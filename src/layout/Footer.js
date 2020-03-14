@@ -1,39 +1,37 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 function Footer() {
   return (
     <footer>
       <div className="social-bar">
-        <Router>
-          <ul>
-            <li>
-              <Link to="/">
-                <i className="fab fa-facebook-f"></i>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <i className="fab fa-twitter"></i>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <i className="fab fa-google-plus-g"></i>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <i className="fab fa-linkedin-in"></i>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <i className="fab fa-instagram"></i>
-              </Link>
-            </li>
-          </ul>
-        </Router>
+        <ul>
+          <li>
+            <Link to="/">
+              <i className="fab fa-facebook-f"></i>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <i className="fab fa-twitter"></i>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <i className="fab fa-google-plus-g"></i>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <i className="fab fa-linkedin-in"></i>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <i className="fab fa-instagram"></i>
+            </Link>
+          </li>
+        </ul>
       </div>
       <div className="subscription">
         <div className="subscription-container">

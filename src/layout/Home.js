@@ -4,12 +4,12 @@ import './Home.css';
 function Hero() {
   const [imgPos, updatePos] = useState({ transform: 'translateY()' });
 
-  const handleParralax = amount => {
+  const handleParralax = () => {
     const offSet = window.pageYOffset;
-    updatePos({ transform: `translateY(${offSet * amount}%)` });
+    updatePos({ transform: `translateY(${offSet * -0.02}%)` });
   };
   useEffect(() => {
-    window.addEventListener('scroll', handleParralax.bind(this, -0.02));
+    window.addEventListener('scroll', handleParralax);
     return () => {
       window.removeEventListener('scroll', handleParralax);
     };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CartWidget from '../components/CartWidget';
-import HOC from '../components/HOC';
 import './Header.css';
 function Navigation(props) {
   return (

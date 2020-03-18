@@ -1,32 +1,33 @@
-import React, { useState } from 'react';
-import { Slider, ColorSelector } from '../components/Filters';
+import React, { useContext, useReducer } from 'react';
+import { Slider, ColorSelector, SortProductsCard } from '../components/Filters';
 import Data from '../components/data/ProductData';
 import useDataFetching from '../components/useDataFetching';
 import './Shop.css';
 import '../layout/ProductFilter.css';
 import '../layout/SortProducts.css';
 
-function SortProductsCard() {
-  const sortMethod = e => {};
-  return (
-    <div className="sort-products">
-      <label htmlFor="product-sorter">Sort by</label>
-      <select onChange={sortMethod} id="sort">
-        <option value="newest">Newest</option>
-        <option value="pricelth">Price (low to high)</option>
-        <option value="pricehtl">Price (high to low)</option>
-        <option value="nameaz">Name A-Z</option>
-        <option value="nameza">Name Z-A</option>
-      </select>
-    </div>
-  );
-}
-
+console.log('priceSlider');
+const ProductContext = React.createContext(null);
+const initialState = { data: [...Data] };
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'filterData':
+      return {
+        data: action.data
+      };
+    case 'sortData':
+      return {
+        data: action.data
+      };
+    default:
+      return {
+        data: state.data
+      };
+  }
+};
 function FilterCard(props) {
-  const handleClick = props.handleClick;
   return (
     <div className="product-filter">
-      <button onClick={() => handleClick('Testing')}>Passing state</button>
       <h2>Filter By</h2>
       <hr />
       <div className="price-filter">
@@ -37,9 +38,7 @@ function FilterCard(props) {
           data-state="expand"
         ></span>
         <div className="price-slider">
-          <Slider>
-            <>{props.children}</>
-          </Slider>
+          <Slider />
         </div>
       </div>
       <hr />
@@ -52,7 +51,7 @@ function FilterCard(props) {
         ></span>
         <div className="colorselector">
           <ul>
-            <ColorSelector data={props.data} />
+            <ColorSelector />
           </ul>
         </div>
       </div>
@@ -60,13 +59,14 @@ function FilterCard(props) {
   );
 }
 
-function Products(props) {
+function Products() {
   // <--- Data Prop
+  const { products } = useContext(ProductContext);
   return (
     <div className="product-items-container">
       <SortProductsCard />
       <ul>
-        {props.data.map(({ name, key, price }) => (
+        {products.data.map(({ name, key, price }) => (
           <li key={key}>
             <div className="product-item">
               <img
@@ -84,53 +84,31 @@ function Products(props) {
     </div>
   );
 }
+function ProductGalleryContainer() {
+  const [products, dispatch] = useReducer(reducer, initialState);
+  return (
+    <section className="product-gallery">
+      <ProductContext.Provider value={{ products, dispatch }}>
+        <FilterCard></FilterCard>
+        <Products />
+      </ProductContext.Provider>
+    </section>
+  );
+}
 function Shop(props) {
   //------------------------FetchDataHook------------------//
-  const { results, loading } = useDataFetching(
-    'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/master/src/application.json'
-  );
-  const [range, changedRange] = useState(180);
-  const logVariable = arg => console.log(arg);
-  const handleClick = text => alert(text);
+  // const { results, loading } = useDataFetching(
+  //   'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/master/src/application.json'
+  // );
 
-  try {
-    const data = [...results];
-    const sorted = data.sort((a, b) => a.price - b.price);
-    let min = sorted[0].price;
-    let max = sorted[sorted.length - 1].price;
-    const filteredByPrice = data.filter(product => product.price >= range);
-    return (
-      <section className="product-collection">
-        <h1 className="collection-header">Our Collection</h1>
-        <section className="product-gallery">
-          <FilterCard
-            variable={logVariable}
-            handleClick={handleClick}
-            data={data}
-          >
-            <input
-              onChange={e => changedRange(e.target.value)}
-              type="range"
-              min={min}
-              max={max}
-              step="5"
-              defaultValue={range}
-            />
-            <p data-current-price>{'$' + range}</p>
-            <p data-max-range>
-              {max}
-              {}
-            </p>
-          </FilterCard>
-          <Products range={range} data={filteredByPrice} />
-        </section>
-      </section>
-    );
-  } catch (error) {
-    return loading;
-  }
+  return (
+    <section className="product-collection">
+      <h1 className="collection-header">Our Collection</h1>
+      <ProductGalleryContainer />
+    </section>
+  );
 }
-export default Shop;
+export { Shop, ProductContext };
 
 // <li>
 // <div className="product-item">

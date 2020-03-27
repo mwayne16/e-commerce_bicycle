@@ -1,31 +1,17 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useContext } from 'react';
 import { Slider, ColorSelector, SortProductsCard } from '../components/Filters';
-import Data from '../components/data/ProductData';
+import { initialState, reducer } from '../reducers/productItems';
 import useDataFetching from '../components/useDataFetching';
 import './Shop.css';
 import '../layout/ProductFilter.css';
 import '../layout/SortProducts.css';
-
-console.log('priceSlider');
 const ProductContext = React.createContext(null);
-const initialState = { data: [...Data] };
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'filterData':
-      return {
-        data: action.data
-      };
-    case 'sortData':
-      return {
-        data: action.data
-      };
-    default:
-      return {
-        data: state.data
-      };
-  }
-};
-function FilterCard(props) {
+
+// Try and look for a way to filter the array and then compare that to the untouched products arr
+
+function FilterCard() {
+  const { ...props } = useContext(ProductContext);
+  console.log('ran');
   return (
     <div className="product-filter">
       <h2>Filter By</h2>
@@ -38,7 +24,7 @@ function FilterCard(props) {
           data-state="expand"
         ></span>
         <div className="price-slider">
-          <Slider />
+          <Slider {...props} />
         </div>
       </div>
       <hr />
@@ -51,7 +37,7 @@ function FilterCard(props) {
         ></span>
         <div className="colorselector">
           <ul>
-            <ColorSelector />
+            <ColorSelector {...props} />
           </ul>
         </div>
       </div>
@@ -59,14 +45,13 @@ function FilterCard(props) {
   );
 }
 
-function Products() {
+function Products(props) {
   // <--- Data Prop
-  const { products } = useContext(ProductContext);
   return (
     <div className="product-items-container">
       <SortProductsCard />
       <ul>
-        {products.data.map(({ name, key, price }) => (
+        {props.items.map(({ name, key, price }) => (
           <li key={key}>
             <div className="product-item">
               <img
@@ -85,12 +70,16 @@ function Products() {
   );
 }
 function ProductGalleryContainer() {
-  const [products, dispatch] = useReducer(reducer, initialState);
+  const [product, dispatch] = useReducer(reducer, initialState);
+  const [filter, setFilter] = useState(product.items);
+  useEffect(() => {
+    setFilter(product.filteredItems);
+  }, [product]);
   return (
     <section className="product-gallery">
-      <ProductContext.Provider value={{ products, dispatch }}>
-        <FilterCard></FilterCard>
-        <Products />
+      <ProductContext.Provider value={{ product, dispatch }}>
+        <FilterCard />
+        <Products items={filter} />
       </ProductContext.Provider>
     </section>
   );

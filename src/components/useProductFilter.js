@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-const useArray = initial => {
+const useProductFilter = initial => {
   const [value, setValue] = useState(initial);
   return {
     value,
@@ -16,7 +16,7 @@ const useArray = initial => {
     sortAscending: () => setValue(arr => arr.sort((a, b) => a.price - b.price))
   };
 };
-export default useArray;
+export default useProductFilter;
 
 // useEffect(() => {
 //   async function DatatoFilter() {

@@ -8,11 +8,7 @@ const reducer = (state, action) => {
     case 'filterByPrice':
       return { ...state, filteredItems: action.payload };
     case 'filterByColor':
-      return {
-        ...state,
-        ...state.filteredItems,
-        filteredItems: action.payload
-      };
+      return { ...state, filteredItems: action.payload };
     case 'sort':
       return { ...state, filteredItems: action.payload };
     default:

@@ -11,34 +11,38 @@ const ProductContext = React.createContext(null);
 
 function FilterCard() {
   const { ...props } = useContext(ProductContext);
-  console.log('ran');
   return (
     <div className="product-filter">
-      <h2>Filter By</h2>
-      <hr />
-      <div className="price-filter">
-        <p>Price</p>
-        <span
-          id="price"
-          className="price-toggle fas fa-minus"
-          data-state="expand"
-        ></span>
-        <div className="price-slider">
-          <Slider {...props} />
-        </div>
+      <div className="sorted-options">
+        <SortProductsCard {...props} />
       </div>
-      <hr />
-      <div className="color-filter">
-        <p>Color</p>
-        <span
-          id="color"
-          className="color-toggle fas fa-plus"
-          data-state="expand"
-        ></span>
-        <div className="colorselector">
-          <ul>
-            <ColorSelector {...props} />
-          </ul>
+      <div className="filter-optioins">
+        <h2>Filter By</h2>
+        <hr />
+        <div className="price-filter">
+          <p>Price</p>
+          <span
+            id="price"
+            className="price-toggle fas fa-minus"
+            data-state="expand"
+          ></span>
+          <div className="price-slider">
+            <Slider {...props} />
+          </div>
+        </div>
+        <hr />
+        <div className="color-filter">
+          <p>Color</p>
+          <span
+            id="color"
+            className="color-toggle fas fa-plus"
+            data-state="expand"
+          ></span>
+          <div className="colorselector">
+            <ul>
+              <ColorSelector {...props} />
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -49,15 +53,11 @@ function Products(props) {
   // <--- Data Prop
   return (
     <div className="product-items-container">
-      <SortProductsCard />
       <ul>
-        {props.items.map(({ name, key, price }) => (
+        {props.items.map(({ name, key, price, released, src }) => (
           <li key={key}>
-            <div className="product-item">
-              <img
-                src={require(`../assets/images/product${key}.jpeg`)}
-                alt="product1"
-              />
+            <div key={key} className="product-item">
+              <img src={src} alt="product1" />
               <span className="item-details">
                 <p data-item-title={name}>{name}</p>
                 <p data-item-price={price}>{'$' + price}</p>

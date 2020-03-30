@@ -1,32 +1,27 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { ProductContext } from '../layout/Shop';
+import React, { useState, useEffect } from 'react';
 function Slider(props) {
-  const sorted = props.product.items.sort((a, b) => a.price - b.price);
-  const min = sorted[0].price;
-  const max = sorted[sorted.length - 1].price;
-  const [range, changedRange] = useState(min);
-
+  const [range, changedRange] = useState(180);
   useEffect(() => {
     const filter = arr => arr.filter(product => product.price >= range);
     props.dispatch({
       type: 'filterByPrice',
       payload: filter(props.product.items)
     });
-    return () => {};
+    console.log(range);
   }, [range]);
   return (
     <>
       <input
         onChange={e => changedRange(e.target.value)}
         type="range"
-        min={min}
-        max={max}
+        min={180}
+        max={620}
         step="5"
         defaultValue={range}
       />
       <p data-current-price>{'$' + range}</p>
       <p data-max-range>
-        {max}
+        {620}
         {}
       </p>
     </>
@@ -40,7 +35,6 @@ function ColorSelector(props) {
     forceUpdate();
     newColor(color);
   };
-
   const forceUpdate = () => setValue(value => ++value);
   useEffect(() => {
     const filter = arr => arr.filter(product => product.color === color);
@@ -72,19 +66,48 @@ function ColorSelector(props) {
   );
 }
 
-function SortProductsCard() {
-  const sortMethod = e => {
-    console.log(e.target.value);
+function SortProductsCard(props) {
+  const filterDate = () => {
+    const sortByDate = arr =>
+      arr.sort((a, b) => new Date(b.released) - new Date(a.released));
+    return dispatchMethod(sortByDate);
+  };
+
+  const filterAscending = type => {
+    const sortAscending = arr =>
+      arr.sort((a, b) => (a[type] < b[type] ? 1 : 0));
+    return dispatchMethod(sortAscending);
+  };
+  const filterDescending = type => {
+    const sortDescending = arr =>
+      arr.sort((a, b) => (a[type] > b[type] ? 1 : 0));
+    return dispatchMethod(sortDescending);
+  };
+  const dispatchMethod = method => {
+    props.dispatch({
+      type: 'sort',
+      payload: method(props.product.items)
+    });
   };
   return (
     <div className="sort-products">
       <label htmlFor="product-sorter">Sort by</label>
-      <select onChange={sortMethod} id="sort">
-        <option value="newest">Newest</option>
-        <option value="pricelth">Price (low to high)</option>
-        <option value="pricehtl">Price (high to low)</option>
-        <option value="nameaz">Name A-Z</option>
-        <option value="nameza">Name Z-A</option>
+      <select id="sort">
+        <option onClick={filterDate} value="newest">
+          Newest
+        </option>
+        <option onClick={filterDescending.bind(this, 'price')} value="pricelth">
+          Price (low to high)
+        </option>
+        <option onClick={filterAscending.bind(this, 'price')} value="pricehtl">
+          Price (high to low)
+        </option>
+        <option onClick={filterDescending.bind(this, 'name')} value="nameaz">
+          Name A-Z
+        </option>
+        <option onClick={filterAscending.bind(this, 'name')} value="nameza">
+          Name Z-A
+        </option>
       </select>
     </div>
   );

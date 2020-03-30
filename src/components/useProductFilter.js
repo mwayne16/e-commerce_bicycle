@@ -13,7 +13,7 @@ const useProductFilter = initial => {
       c => setValue(arr => arr.filter(v => v.color === c)),
       []
     ),
-    sortAscending: () => setValue(arr => arr.sort((a, b) => a.price - b.price))
+    sortAscending: () => setValue(arr => arr.sort((a, b) => b.price - a.price))
   };
 };
 export default useProductFilter;

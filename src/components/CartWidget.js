@@ -12,7 +12,7 @@ function CartButton(props) {
           textTransform: 'uppercase',
           marginTop: '5px',
           fontWeight: '600',
-          width: '60px'
+          width: '60px',
         }}
       >
         My Cart
@@ -21,11 +21,12 @@ function CartButton(props) {
   );
 }
 
+function CartModal(props) {}
+CartModal();
 function CartWidget() {
-  const [qty, updateQty] = useState(0);
   return (
     <React.Fragment>
-      <CartButton itemCount={qty} />
+      <CartButton itemCount={0} />
     </React.Fragment>
   );
 }
@@ -42,10 +43,10 @@ styles.button = {
   height: 'auto',
   padding: '0.5em 3em',
   background: '#294057',
-  color: '#fff'
+  color: '#fff',
 };
 
 styles.icon = {
   color: '#B99867',
-  fontSize: '2.5em'
+  fontSize: '2.5em',
 };

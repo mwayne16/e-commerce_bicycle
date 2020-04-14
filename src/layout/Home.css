@@ -11,7 +11,7 @@ section.hero {
 }
 
 .hero-img {
-  background: url('../assets/images/hero8.png') calc(50% + -5vw) 10px no-repeat
+  background: url('../assets/images/hero.png') calc(50% + -5vw) 10px no-repeat
     content-box #efefef;
   background-size: cover;
   width: calc(100% + 5vmax);
@@ -114,14 +114,7 @@ section.about {
 .about-descblock .alt-title {
   color: #294057;
 }
-.defaultButton.alt-button {
-  padding: 1em 4em;
-  border: solid #cfb079 2px;
-}
-.defaultButton.alt-button:hover {
-  background: #cfb079;
-  color: #fff;
-}
+
 .about-descblock p {
   color: #464343;
   font-size: 0.48em;

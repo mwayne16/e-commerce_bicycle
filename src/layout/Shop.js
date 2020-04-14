@@ -1,48 +1,105 @@
 import React, { useState, useEffect, useReducer, useContext } from 'react';
 import { Slider, ColorSelector, SortProductsCard } from '../components/Filters';
-import { initialState, reducer } from '../reducers/productItems';
-import useDataFetching from '../components/useDataFetching';
+import { initialState, reducer } from '../reducers/productReducer';
+import { Transition } from 'react-transition-group';
+import ProductModal from '../components/ProductModal';
 import './Shop.css';
 import '../layout/ProductFilter.css';
-import '../layout/SortProducts.css';
+
 const ProductContext = React.createContext(null);
-
-// Try and look for a way to filter the array and then compare that to the untouched products arr
-
 function FilterCard() {
+  const toggledStyles = {
+    entered: {
+      zIndex: 1,
+    },
+    exiting: {
+      maxHeight: '100px',
+    },
+    exited: {
+      transform: 'translateY(-100%)',
+      maxHeight: 0,
+      overflow: 'hidden',
+      zIndex: -1,
+    },
+  };
   const { ...props } = useContext(ProductContext);
+  const [toggled, updateToggle] = useState({ price: true, color: false });
+  const [highlightedColor, updateColor] = useState('');
+
+  const targetedColor = (color) => {
+    return updateColor(`: ${color}`);
+  };
+
+  //Add clear filter functionality
   return (
     <div className="product-filter">
-      <div className="sorted-options">
-        <SortProductsCard {...props} />
-      </div>
-      <div className="filter-optioins">
+      <SortProductsCard {...props} />
+      <div className="filter-options">
         <h2>Filter By</h2>
-        <hr />
-        <div className="price-filter">
-          <p>Price</p>
-          <span
-            id="price"
-            className="price-toggle fas fa-minus"
-            data-state="expand"
-          ></span>
-          <div className="price-slider">
-            <Slider {...props} />
+        <div data-is-toggled={toggled.price} className="filter-type">
+          <div className="filter-type-header">
+            <p>Price</p>
+            <span
+              onClick={() =>
+                updateToggle({ ...toggled, price: !toggled.price })
+              }
+              id={'price-toggle'}
+              className={`filter-toggle-action ${
+                toggled.price ? 'fas fa-minus' : 'fas fa-plus'
+              } `}
+            ></span>
           </div>
+          <Transition timeout={0} in={toggled.price}>
+            {(state) => (
+              <div
+                style={{
+                  ...toggledStyles[state],
+                  transition: '.2s ease-in-out',
+                }}
+                className="filter-content"
+                id="price-slider"
+                data-is-toggled={toggled.price}
+              >
+                <Slider {...props} />
+              </div>
+            )}
+          </Transition>
         </div>
-        <hr />
-        <div className="color-filter">
-          <p>Color</p>
-          <span
-            id="color"
-            className="color-toggle fas fa-plus"
-            data-state="expand"
-          ></span>
-          <div className="colorselector">
-            <ul>
-              <ColorSelector {...props} />
-            </ul>
+
+        <div data-is-toggled={toggled.color} className="filter-type">
+          <div className="filter-type-header">
+            <p>
+              {highlightedColor !== ': undefined'
+                ? 'Color' + highlightedColor
+                : 'Color'}
+            </p>
+            <span
+              onClick={() =>
+                updateToggle({ ...toggled, color: !toggled.color })
+              }
+              id="color-toggle"
+              className={`filter-toggle-action ${
+                toggled.color ? 'fas fa-minus' : 'fas fa-plus'
+              } `}
+            ></span>
           </div>
+          <Transition timeout={0} in={toggled.color}>
+            {(state) => (
+              <div
+                style={{
+                  ...toggledStyles[state],
+                  transition: '.2s ease-in-out',
+                }}
+                className="filter-content"
+                id="color-filter"
+                data-is-toggled={toggled.color}
+              >
+                <ul className="color-filter-list">
+                  <ColorSelector displayColor={targetedColor} {...props} />
+                </ul>
+              </div>
+            )}
+          </Transition>
         </div>
       </div>
     </div>
@@ -50,30 +107,61 @@ function FilterCard() {
 }
 
 function Products(props) {
-  // <--- Data Prop
+  const [previewToggled, updateToggle] = useState({
+    toggled: false,
+    key: null,
+  });
+
+  const passProduct = (data) =>
+    updateToggle({ toggled: !previewToggled.toggled, key: data || null });
+
+  const closeModal = (state) =>
+    state ? updateToggle({ toggled: false, key: ' ' }) : null;
   return (
     <div className="product-items-container">
       <ul>
-        {props.items.map(({ name, key, price, released, src }) => (
+        {props.items.map(({ name, key, price, fileName }) => (
           <li key={key}>
-            <div key={key} className="product-item">
-              <img src={src} alt="product1" />
+            <div className="product-item">
+              <div className="product-img">
+                <img
+                  src={require(`../assets/images/${fileName}`)}
+                  alt={`${name} bike`}
+                />
+                <span
+                  onClick={passProduct.bind(this, key)}
+                  className="product-quickview"
+                >
+                  <p>Quick View</p>
+                </span>
+              </div>
               <span className="item-details">
                 <p data-item-title={name}>{name}</p>
-                <p data-item-price={price}>{'$' + price}</p>
+                <p data-item-price={price}>{'$' + price}.00</p>
               </span>
             </div>
           </li>
         ))}
       </ul>
+      {previewToggled.toggled && (
+        <ProductModal
+          close={closeModal}
+          toggled={previewToggled.toggled}
+          selectedProduct={previewToggled.key}
+          {...props}
+        />
+      )}
     </div>
   );
 }
+
 function ProductGalleryContainer() {
   const [product, dispatch] = useReducer(reducer, initialState);
   const [filter, setFilter] = useState(product.items);
   useEffect(() => {
-    setFilter(product.filteredItems);
+    setFilter(
+      product.filteredItems.length !== 0 ? product.filteredItems : product.items
+    );
   }, [product]);
   return (
     <section className="product-gallery">

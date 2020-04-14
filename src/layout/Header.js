@@ -11,34 +11,22 @@ function Navigation(props) {
           <span className="brand-desc">Urban Bikes</span>
         </div>
         <li>
-          <Link style={props.color} to="/">
-            Home
-          </Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link style={props.color} to="/shop">
-            Shop
-          </Link>
+          <Link to="/shop">Shop</Link>
         </li>
         <li>
-          <Link style={props.color} to="/blog">
-            Blog
-          </Link>
+          <Link to="/blog">Blog</Link>
         </li>
         <li>
-          <Link style={props.color} to="/faq">
-            FAQ
-          </Link>
+          <Link to="/faq">FAQ</Link>
         </li>
         <li>
-          <Link style={props.color} to="/contact">
-            Contact
-          </Link>
+          <Link to="/contact">Contact</Link>
         </li>
         <li>
-          <Link style={props.color} to="/members">
-            Members
-          </Link>
+          <Link to="/members">Members</Link>
         </li>
         <li>
           <button className="loginBTN" type="button">

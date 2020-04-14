@@ -6,7 +6,9 @@
     "color": "black",
     "price": 180,
     "released": "03/03/2020",
-    "sale": 0
+    "sale": 0,
+    "fileName": "product1.jpg",
+    "src": "../assets/images/product1.jpg"
   },
   {
     "name": "Bike 2",
@@ -15,7 +17,9 @@
     "color": "red",
     "price": 280,
     "released": "01/23/2019",
-    "sale": 20
+    "sale": 20,
+    "fileName": "product2.jpg",
+    "src": "../assets/images/product2.jpg"
   },
   {
     "name": "Bike 3",
@@ -24,7 +28,9 @@
     "color": "green",
     "price": 200,
     "released": "06/03/2018",
-    "sale": 0
+    "sale": 0,
+    "fileName": "product3.jpg",
+    "src": "../assets/images/product3.jpg"
   },
   {
     "name": "Bike 4",
@@ -33,7 +39,9 @@
     "color": "black",
     "price": 380,
     "released": "12/12/2018",
-    "sale": 0
+    "sale": 0,
+    "fileName": "product4.jpg",
+    "src": "./assets/images/product4.jpg"
   },
   {
     "name": "Bike 5",
@@ -42,7 +50,9 @@
     "color": "gray",
     "price": 220,
     "released": "02/23/2020",
-    "sale": 50
+    "sale": 50,
+    "fileName": "product5.jpg",
+    "src": "./assets/images/product5.jpg"
   },
   {
     "name": "Bike 6",
@@ -51,7 +61,9 @@
     "color": "white",
     "price": 210,
     "released": "09/01/2016",
-    "sale": 10
+    "sale": 10,
+    "fileName": "product6.jpg",
+    "src": "./assets/images/product6.jpg"
   },
   {
     "name": "Bike 7",
@@ -60,7 +72,9 @@
     "color": "black",
     "price": 600,
     "released": "11/13/2019",
-    "sale": 0
+    "sale": 0,
+    "fileName": "product7.jpg",
+    "src": "./assets/images/product7.jpg"
   },
   {
     "name": "Bike 8",
@@ -69,7 +83,9 @@
     "color": "white",
     "price": 290,
     "released": "03/03/2020",
-    "sale": 0
+    "sale": 0,
+    "fileName": "product8.jpg",
+    "src": "./assets/images/product8.jpg"
   },
   {
     "name": "Bike 9",
@@ -78,6 +94,8 @@
     "color": "black",
     "price": 330,
     "released": "03/03/2018",
-    "sale": 0
+    "sale": 0,
+    "fileName": "product9.jpg",
+    "src": "./assets/images/product1.jpg"
   }
 ]

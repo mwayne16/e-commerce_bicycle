@@ -22,3 +22,11 @@ button {
 .defaultButton:hover h3 {
   color: #fff;
 }
+.defaultButton.alt-button {
+  padding: 1em 4em;
+  border: solid #cfb079 2px;
+}
+.defaultButton.alt-button:hover {
+  background: #cfb079;
+  color: #fff;
+}

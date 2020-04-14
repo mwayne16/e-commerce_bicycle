@@ -4,11 +4,11 @@
     "key": 1,
     "sku": 532342,
     "color": "black",
-    "price": 180,
+    "price": 580,
     "released": "03/03/2020",
     "sale": 0,
     "fileName": "product1.jpg",
-    "src": "../assets/images/product1.jpg"
+    "src": "./assets/images/product1.jpg"
   },
   {
     "name": "Bike 2",
@@ -19,7 +19,7 @@
     "released": "01/23/2019",
     "sale": 20,
     "fileName": "product2.jpg",
-    "src": "../assets/images/product2.jpg"
+    "src": "./assets/images/product2.jpg"
   },
   {
     "name": "Bike 3",
@@ -30,7 +30,7 @@
     "released": "06/03/2018",
     "sale": 0,
     "fileName": "product3.jpg",
-    "src": "../assets/images/product3.jpg"
+    "src": "./assets/images/product3.jpg"
   },
   {
     "name": "Bike 4",

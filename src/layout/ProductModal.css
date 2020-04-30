@@ -1,0 +1,159 @@
+#root-product-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 890px;
+  height: 610px;
+  z-index: 999;
+  display: none;
+}
+#root-product-modal[data-toggled='true'] {
+  display: block;
+}
+[data-toggled='true']#root-product-modal::after {
+  content: '';
+  position: absolute;
+  z-index: 998;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  background: rgba(85, 85, 85, 0.75);
+}
+
+.product-modal {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+
+  min-width: 100%;
+  min-height: 100%;
+  padding: 1.5em;
+  overflow: hidden;
+  z-index: 999;
+  background: #fff;
+}
+.product-modal-close {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 5px;
+  padding: 0.5em;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: rgb(127, 127, 127, 0.7);
+}
+.product-modal-close:hover {
+  color: #000;
+}
+.product-modal-img {
+  position: relative;
+  max-height: 455px;
+  display: block;
+  flex-basis: 60%;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  margin-right: 1em;
+}
+
+.product-modal-overview {
+  margin-left: 1em;
+}
+
+.product-modal-title {
+  color: #294057;
+  font-weight: 300;
+  padding-bottom: 0.3em;
+}
+.product-modal-sku {
+  color: #575757;
+  font-size: 0.9em;
+  font-weight: 300;
+  padding-bottom: 1em;
+}
+.product-modal-price {
+  display: inline-block;
+  margin-right: 10px;
+  color: #575757;
+  font-size: 1.3em;
+  font-weight: 400;
+  padding-bottom: 1em;
+}
+.product-modal-details {
+  font-size: 0.8em;
+  color: #838383;
+  font-weight: 100;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.product-modal-colorText {
+  color: #838383;
+  font-size: 0.95em;
+  padding-bottom: 0.5em;
+}
+.product-modal-color {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 2px rgba(255, 255, 255, 1) inset;
+  border: 1px solid #575757;
+  margin-bottom: 1.5em;
+  cursor: pointer;
+}
+.product-modal-quanity {
+  max-width: 82px;
+  padding-bottom: 2em;
+}
+.quanity-input {
+  position: relative;
+}
+.quanity-label {
+  display: block;
+  padding-bottom: 1em;
+}
+input#quanity-input {
+  appearance: textfield;
+  padding: 1em;
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(131, 131, 131, 0.5);
+  color: #575757;
+}
+.quanity-input:hover .quanity-controls span {
+  opacity: 1;
+  visibility: visible;
+}
+.quanity-controls {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.quanity-controls span {
+  display: block;
+  transition: 0.3s linear all;
+  color: rgba(87, 87, 87, 0.8);
+  width: 15px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  font-size: 0.7em;
+  line-height: 15px;
+}
+.quanity-controls span[data-action-block='true'] {
+  color: rgba(87, 87, 87, 0.3);
+}
+button.product-modal-addToCart {
+  position: relative;
+  width: 300px;
+  background: rgb(207, 176, 121);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 0.9em;
+}
+button.product-modal-addToCart:hover {
+  opacity: 0.8;
+}

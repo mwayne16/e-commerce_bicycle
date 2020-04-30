@@ -1,0 +1,32 @@
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.defaultButton {
+  padding: 1em 3em;
+  border: solid #294057 2px;
+  background: #fff;
+  transition: 0.3s linear all;
+}
+.defaultButton h3 {
+  text-transform: uppercase;
+  font-weight: 100;
+  color: #cfb079;
+  transition: 0.3s linear all;
+}
+.defaultButton:hover {
+  background: #294057;
+}
+.defaultButton:hover h3 {
+  color: #fff;
+}
+.defaultButton.alt-button {
+  padding: 1em 4em;
+  border: solid #cfb079 2px;
+}
+.defaultButton.alt-button:hover {
+  background: #cfb079;
+  color: #fff;
+}

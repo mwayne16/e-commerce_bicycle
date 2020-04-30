@@ -1,0 +1,40 @@
+/* Logo --> font-family: 'Grand Hotel' */
+@import url('https://fonts.googleapis.com/css?family=Grand+Hotel&display=swap');
+/* Everything Else -->*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+ul,
+li,
+a {
+  text-decoration: none;
+  list-style: none;
+  color: inherit;
+}
+.fas.fa-shopping-bag {
+  position: relative;
+  margin: auto;
+}
+.fa-shopping-bag::before {
+  max-height: 100%;
+  position: absolute;
+  color: #b99867;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-size: 4em;
+}
+
+/* top: calc(50% - 30px);
+left: calc(50% - 22px);
+
+font-size: 4.2em; */

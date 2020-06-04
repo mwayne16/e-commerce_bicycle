@@ -6,17 +6,6 @@ section.product-collection {
   width: 100%;
 }
 
-.collection-header {
-  font-size: 2.9em;
-  font-weight: 400;
-  letter-spacing: 3px;
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  color: #b99867;
-  padding: 1.5em 0 3em;
-}
-
 section.product-gallery {
   position: relative;
   display: flex;

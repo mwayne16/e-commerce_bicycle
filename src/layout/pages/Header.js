@@ -14,22 +14,23 @@ function Navigation(props) {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/shop">Shop</Link>
+          <Link to="/Shop">Shop</Link>
         </li>
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link to="/Blog">Blog</Link>
         </li>
         <li>
-          <Link to="/faq">FAQ</Link>
+          <Link to="/FAQ">FAQ</Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to="/Contact">Contact</Link>
         </li>
         <li>
-          <Link to="/members">Members</Link>
+          <Link to="/Members">Members</Link>
         </li>
         <li>
           <button className="loginBTN" type="button">
+            <span className="user-icon far fa-user"></span>{' '}
             <Link to="/">Log In</Link>
           </button>
         </li>
@@ -39,10 +40,10 @@ function Navigation(props) {
   );
 }
 
-function Header(props) {
+function Header() {
   return (
     <header>
-      <Navigation count={props.itemCount} />
+      <Navigation />
     </header>
   );
 }

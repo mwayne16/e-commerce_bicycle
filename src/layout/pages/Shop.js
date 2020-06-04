@@ -4,12 +4,14 @@ import {
   ColorSelector,
   SortProductsCard,
 } from '../../components/Filters';
+
 import { Transition } from 'react-transition-group';
 import ProductModal from '../../components/modals/ProductModal';
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../components/context/productContext';
 import '../styles/Shop.css';
 import '../styles/ProductFilter.css';
+import usePriceFormatter from './../../components/custom_hooks/usePriceFormatter';
 
 function FilterCard() {
   const toggledStyles = {
@@ -29,11 +31,9 @@ function FilterCard() {
   const { ...props } = useContext(ProductContext);
   const [toggled, updateToggle] = useState({ price: true, color: false });
   const [highlightedColor, updateColor] = useState('');
-
   const targetedColor = (color) => {
     return updateColor(`: ${color}`);
   };
-
   //Add clear filter functionality
   return (
     <div className="product-filter">
@@ -124,12 +124,17 @@ function Products(props) {
   return (
     <div className="product-items-container">
       <ul>
-        {props.items.map(({ name, key, price, src }) => (
+        {props.items.map(({ name, key, price, src, color, sku }) => (
           <li key={key}>
             <div className="product-item">
               <div className="product-img">
-                <Link to="/productpage">
-                  <img src={src} alt={`${name} bike`} />
+                <Link
+                  to={{
+                    pathname: '/Products',
+                    state: { name, key, price, src, color, sku },
+                  }}
+                >
+                  <img src={src} loading="lazy" alt={`${name} bike`} />
                 </Link>
                 <span
                   onClick={passProduct.bind(this, key)}
@@ -140,14 +145,14 @@ function Products(props) {
               </div>
 
               <span className="item-details">
-                <Link to="/productpage">
-                  <p
-                    onClick={() => console.log(price.toString())}
-                    data-item-title={name}
-                  >
-                    {name}
-                  </p>
-                  <p data-item-price={price}>{'$' + price}</p>
+                <Link
+                  to={{
+                    pathname: '/Products',
+                    state: props.item,
+                  }}
+                >
+                  <p data-item-title={name}>{name}</p>
+                  <p data-item-price={price}>{price}</p>
                 </Link>
               </span>
             </div>
@@ -167,31 +172,29 @@ function Products(props) {
 }
 
 function ProductGalleryContainer(props) {
-  const { product } = React.useContext(ProductContext);
-  const [filter, setFilter] = useState(product.items);
+  const { products } = React.useContext(ProductContext);
+  const [filter, setFilter] = useState(products.items);
+
   useEffect(() => {
     setFilter(
-      product.filteredItems.length !== 0 ? product.filteredItems : product.items
+      products.filteredItems.length !== 0
+        ? products.filteredItems
+        : products.items
     );
-  }, [product]);
+  }, [products]);
   return (
     <section className="product-gallery">
-      <FilterCard {...props} />
+      <FilterCard />
       <Products items={filter} />
     </section>
   );
 }
-function Shop(props) {
-  //------------------------FetchDataHook------------------//
-  // const { results, loading } = useDataFetching(
-  //   'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/master/src/application.json'
-  // );
-
+function Shop() {
   return (
     <section className="product-collection">
-      <h1 className="collection-header">Our Collection</h1>
+      <h1 className="section-header">Our Collection</h1>
       <ProductGalleryContainer />
     </section>
   );
 }
-export { Shop, ProductContext };
+export default Shop;

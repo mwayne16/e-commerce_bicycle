@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CartItemsContext } from '../context/cartContext';
 import { CartModalContext } from '../context/modalContext';
 import '../../layout/styles/CartModal.css';
+import { Link } from 'react-router-dom';
 function CartButton(props) {
   const [toggled, setToggle] = React.useContext(CartModalContext);
   return (
@@ -63,15 +64,23 @@ function CartModal() {
       <main>
         <div className="cart-modal-product">
           <ul>
-            {products.map(({ sku, name, quanity, price, src, key }) => (
-              <li data-active="false" className="cart-modal-item" key={key}>
+            {products.map(({ sku, name, quanity, price, color, src, key }) => (
+              <li key={key} data-active="false" className="cart-modal-item">
                 <div className="item-wrapper">
-                  <aside
-                    className="item-image"
-                    style={{
-                      background: `url(${src}) no-repeat left center / contain  `,
+                  <Link
+                    to={{
+                      pathname: '/Products',
+                      state: { name, sku, price, color, src, key },
                     }}
-                  ></aside>
+                  >
+                    <aside
+                      onClick={handleModal}
+                      className="item-image"
+                      style={{
+                        background: `url(${src}) no-repeat left center / contain  `,
+                      }}
+                    ></aside>
+                  </Link>
                   <div className="item-info">
                     <div className="item-header">
                       <h2>{name}</h2>
@@ -86,7 +95,7 @@ function CartModal() {
                       ></span>
                     </div>
                     <p>QTY:{quanity}</p>
-                    <p>${price}</p>
+                    <p>{price}</p>
                   </div>
                 </div>
               </li>
@@ -100,12 +109,19 @@ function CartModal() {
       </main>
 
       <footer className="modal-footer">
-        <button
-          className="product-modal-addToCart defaultButton alt-button"
-          type="submit"
+        <Link
+          to={{
+            pathname: '/Checkout',
+          }}
         >
-          View Cart
-        </button>
+          <button
+            onClick={handleModal}
+            className="product-item-addToCart defaultButton alt-button"
+            type="button"
+          >
+            View Cart
+          </button>
+        </Link>
       </footer>
     </aside>
   );

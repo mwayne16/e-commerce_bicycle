@@ -1,5 +1,6 @@
 import React from 'react';
 import useLocalStorage from '../custom_hooks/useLocalStorage';
+import removePriceFormat from './../../utilities/removePriceFormat';
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -8,11 +9,10 @@ const formatter = new Intl.NumberFormat('en-US', {
 const CartItemsContext = React.createContext();
 const CartProvider = (props) => {
   const [products, setProduct] = useLocalStorage('selected-products', []);
-
   const subTotal = formatter.format(
     products.length >= 1
       ? products
-          .map((product) => product.price * product.quanity)
+          .map((product) => removePriceFormat(product.price) * product.quanity)
           .reduce((acc, curr) => acc + curr)
       : 0
   );

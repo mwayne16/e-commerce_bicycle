@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Home.css';
+import { Link } from 'react-router-dom';
 
 function Hero() {
   const [imgPos, updatePos] = useState({ transform: 'translateY()' });
@@ -33,9 +34,11 @@ function Arrivals() {
           <img src={'./assets/images/bike1.jpeg'} alt="urban bike #2" />
           <img src={'./assets/images/bike3.jpeg'} alt="urban bike #3" />
         </div>
-        <button type="button" id="collectionBTN" className="defaultButton">
-          <h3>View Collection</h3>
-        </button>
+        <Link to="/shop">
+          <button type="button" id="collectionBTN" className="defaultButton">
+            <h3>View Collection</h3>
+          </button>
+        </Link>
       </div>
     </section>
   );

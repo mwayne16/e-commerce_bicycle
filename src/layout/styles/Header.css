@@ -63,3 +63,16 @@ p.bagCount {
   font-family: 'Open Sans', sans-serif;
   color: #fff;
 }
+.loginBTN {
+  font-size: 0.9em;
+  padding: 0.5em 1em;
+}
+.loginBTN .user-icon {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  color: #fff;
+  border-radius: 50%;
+  background: #294057;
+  margin-right: 5px;
+}

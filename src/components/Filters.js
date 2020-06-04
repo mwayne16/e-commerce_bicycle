@@ -1,49 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import removePriceFormat from './../utilities/removePriceFormat';
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+});
+
 function Slider(props) {
-  const [range, changedRange] = useState(180);
+  const itemPrice = props.products.items.map((value) =>
+    removePriceFormat(value.price)
+  );
+  const findMinMax = (type) => type.apply(Math, itemPrice);
+  const [range, changedRange] = useState(findMinMax(Math.min));
 
   const filterByPrice = () => {
-    const filter = (arr) => arr.filter((product) => product.price >= range);
+    const filter = (arr) =>
+      arr.filter((product) => removePriceFormat(product.price) >= range);
     props.dispatch({
       type: 'filterItems',
-      payload: filter(props.product.items),
+      payload: filter(props.products.items),
     });
   };
+
   return (
     <>
       <input
         onMouseUp={filterByPrice}
-        onChange={(e) => changedRange(e.target.value)}
+        onChange={(e) => changedRange(parseFloat(e.target.value))}
         type="range"
-        min={180}
-        max={620}
-        step="10.50"
+        min={findMinMax(Math.min)}
+        max={findMinMax(Math.max)}
+        step={10}
         defaultValue={range}
       />
       <span className="end-thumb"></span>
       <div className="price-ranges">
-        <p>{'$' + range}</p>
-        <p>{`$620`}</p>
+        <p>{formatter.format(range)}</p>
+        <p>{formatter.format(findMinMax(Math.max))}</p>
       </div>
     </>
   );
 }
 function ColorSelector(props) {
   const [color, newColor] = useState('');
-  const [value, setValue] = useState(0);
 
   const onChange = (color) => {
-    forceUpdate();
     newColor(color);
   };
-  const forceUpdate = () => setValue((value) => ++value);
+
   useEffect(() => {
     const filter = (arr) => arr.filter((product) => product.color === color);
     props.dispatch({
       type: 'filterItems',
-      payload: filter(props.product.items),
+      payload: filter(props.products.items),
     });
-  }, [color, value]);
+  }, [color]);
 
   return (
     <>
@@ -111,7 +122,7 @@ function SortProductsCard(props) {
   const dispatchMethod = (method) => {
     props.dispatch({
       type: 'filterItems',
-      payload: method(props.product.items),
+      payload: method(props.products.items),
     });
   };
   return (

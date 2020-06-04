@@ -1,17 +1,19 @@
-// import Data from '../components/data/ProductData';
-import Data from '../components/data/application';
 const initialState = {
-  items: [...Data],
+  loading: false,
+  items: [],
   filteredItems: [],
 };
 const reducer = (state, action) => {
   switch (action.type) {
     case 'filterItems':
       return { ...state, filteredItems: action.payload };
+    case 'reset':
+      return { ...initialState };
     default:
       return {
         data: state.data,
       };
   }
 };
-export { initialState, reducer };
+
+export { reducer, initialState };

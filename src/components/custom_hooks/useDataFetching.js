@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 function useDataFetching(dataSource) {
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(dataSource);
-
         setResults(response.data);
         setLoading(false);
       } catch (error) {
@@ -19,30 +19,7 @@ function useDataFetching(dataSource) {
   }, [dataSource]);
   return {
     loading,
-    results
+    results,
   };
 }
 export default useDataFetching;
-
-//     try {
-//       const data = await fetch(dataSource);
-//       const json = await data.json();
-
-//       if (json) {
-//         setLoading(false);
-//         setResults(json);
-//       }
-//     } catch (error) {
-//       setLoading(false);
-//     }
-
-//     setLoading(false);
-//   }
-
-//   fetchData();
-// }, [dataSource]);
-
-// return {
-//   loading,
-//   results
-// };

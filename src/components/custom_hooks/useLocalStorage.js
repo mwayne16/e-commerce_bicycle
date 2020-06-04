@@ -11,6 +11,7 @@ const combineStoredValues = (arr) =>
             src: curr.src,
             price: curr.price,
             key: curr.key,
+            color: curr.color,
             quanity: 0,
           };
           acc.result.push(fromMap);

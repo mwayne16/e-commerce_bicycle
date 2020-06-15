@@ -15,6 +15,7 @@ import { ProductProvider } from './components/context/productContext';
 import ProductItemPage from './components/ProductItemPage';
 import ScrollToTop from './components/ScrollToTop';
 import useDataFetching from './components/custom_hooks/useDataFetching';
+import LogIn from './layout/pages/LogIn';
 
 const Scroll = withRouter(ScrollToTop);
 function App() {
@@ -33,12 +34,13 @@ function App() {
                   <Route path="/Checkout" component={Checkout} />
                   <Route path="/FAQ" component={FAQ} />
                   <Route path="/Contact" component={Contact} />
+                  <Route path="/Login" component={LogIn} />
                 </Switch>
               </Scroll>
-              <Footer />
             </ModalProvider>
           </CartProvider>
         </ProductProvider>
+        <Footer />
       </div>
     </Router>
   );

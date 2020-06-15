@@ -31,7 +31,7 @@ function Navigation(props) {
         <li>
           <button className="loginBTN" type="button">
             <span className="user-icon far fa-user"></span>{' '}
-            <Link to="/">Log In</Link>
+            <Link to="/Login">Log In</Link>
           </button>
         </li>
       </ul>

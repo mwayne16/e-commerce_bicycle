@@ -30,9 +30,24 @@ function Arrivals() {
       <h1>New Arrivals</h1>
       <div className="collection-showcase">
         <div className="image-wrapper">
-          <img src={'./assets/images/bike2.jpeg'} alt="urban bike #1" />
-          <img src={'./assets/images/bike1.jpeg'} alt="urban bike #2" />
-          <img src={'./assets/images/bike3.jpeg'} alt="urban bike #3" />
+          <img
+            src={
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike1.jpeg'
+            }
+            alt="urban bike #1"
+          />
+          <img
+            src={
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike2.jpeg'
+            }
+            alt="urban bike #2"
+          />
+          <img
+            src={
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike3.jpeg'
+            }
+            alt="urban bike #3"
+          />
         </div>
         <Link to="/shop">
           <button type="button" id="collectionBTN" className="defaultButton">
@@ -67,7 +82,7 @@ function About() {
         <div className="about-imgblock">
           <img
             src={
-              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike1.jpeg'
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/master/client/public/assets/images/about1.jpeg'
             }
             alt="Urban Bikes Employees"
           />
@@ -76,7 +91,9 @@ function About() {
       <div className="about-row-container">
         <div className="about-imgblock">
           <img
-            src={'./assets/images/about2.jpeg'}
+            src={
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/master/client/public/assets/images/about2.jpeg'
+            }
             alt="Man on Urban Bikes Bicycle"
           />
         </div>

@@ -2,8 +2,7 @@
   "name": "e-commerce_bicycle",
   "version": "0.1.0",
   "main": "client/src/index.js",
-  "proxy": "http://mwayne16.github.io/e-commerce_bicycle:8000",
-  "secure": false,
+  "proxy": "http://localhost:8000",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

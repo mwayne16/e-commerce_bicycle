@@ -28,7 +28,7 @@ function App() {
               <Header />
               <Scroll>
                 <Switch>
-                  <Route exact path="/e-commerce-bicycle" component={Home} />
+                  <Route exact path="/" component={Home} />
                   <Route path="/Shop" component={Shop} />
                   <Route path="/Products" component={ProductItemPage} />
                   <Route path="/Checkout" component={Checkout} />

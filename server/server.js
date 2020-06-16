@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config');
 //Create port on client enviroment or :3001
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 8000;
 //Init Express
 const app = express();
 

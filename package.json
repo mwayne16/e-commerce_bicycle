@@ -2,8 +2,11 @@
   "name": "e-commerce_bicycle",
   "version": "0.1.0",
   "main": "client/src/index.js",
-  "proxy": "http://localhost:3005/",
+  "proxy": ".http://mwayne16.github.io/e-commerce_bicycle:8000",
+  "secure": false,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": " react-scripts start",
     "server": "cd server && nodemon server.js",
     "dev": "concurrently \"npm run server\" \"npm start\"",
@@ -20,5 +23,30 @@
   "bugs": {
     "url": "https://github.com/mwayne16/e-commerce_bicycle/issues"
   },
-  "homepage": "https://github.com/mwayne16/e-commerce_bicycle#readme"
+  "homepage": "http://mwayne16.github.io/e-commerce_bicycle/",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.1",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "mongoose": "^5.9.16",
+    "mongoose-unique-validator": "^2.0.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-loading": "^2.0.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "react-transition-group": "^4.3.0",
+    "uuid": "^8.0.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "gh-pages": "^3.0.0",
+    "nodemon": "^2.0.4"
+  }
 }

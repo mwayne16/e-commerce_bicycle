@@ -1,0 +1,78 @@
+header {
+  position: relative;
+  height: 120px;
+}
+nav {
+  position: fixed;
+  z-index: 999;
+  background: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row;
+}
+
+ul.nav-links {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.nav-links li {
+  padding: 0 20px;
+}
+.logo {
+  display: flex;
+  text-align: center;
+  margin-right: 50px;
+  flex-flow: row wrap;
+  align-items: center;
+  position: relative;
+}
+span.brand-name {
+  padding-right: 15px;
+  font-size: 3.5em;
+  color: #294057;
+  font-family: 'Grand Hotel', sans-serif;
+}
+
+span.brand-desc {
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 3px;
+  color: #cfb079;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #294057;
+  transition: 0.3s linear all;
+}
+.nav-links a:hover {
+  color: #cfb079;
+}
+p.bagCount {
+  position: relative;
+  top: 25px;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+}
+.loginBTN {
+  font-size: 0.9em;
+  padding: 0.5em 1em;
+}
+.loginBTN .user-icon {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  color: #fff;
+  border-radius: 50%;
+  background: #294057;
+  margin-right: 5px;
+}

@@ -32,19 +32,19 @@ function Arrivals() {
         <div className="image-wrapper">
           <img
             src={
-              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike1.jpeg'
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/assets/images/bike1.jpeg'
             }
             alt="urban bike #1"
           />
           <img
             src={
-              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike2.jpeg'
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/assets/images/bike2.jpeg'
             }
             alt="urban bike #2"
           />
           <img
             src={
-              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike3.jpeg'
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/assets/images/bike3.jpeg'
             }
             alt="urban bike #3"
           />

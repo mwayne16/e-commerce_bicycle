@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/mwayne16/e-commerce_bicycle/issues"
   },
-  "homepage": "http://mwayne16.github.io/e-commerce_bicycle/",
+  "homepage": "http://mwayne16.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",

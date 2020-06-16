@@ -66,7 +66,9 @@ function About() {
         </div>
         <div className="about-imgblock">
           <img
-            src={'./assets/images/about1.jpeg'}
+            src={
+              'https://raw.githubusercontent.com/mwayne16/e-commerce_bicycle/gh-pages/static/media/bike1.jpeg'
+            }
             alt="Urban Bikes Employees"
           />
         </div>

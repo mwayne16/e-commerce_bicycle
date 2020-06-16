@@ -4559,11 +4559,11 @@
   font-weight: 900;
   font-display: block;
   src: url(../media/fa-solid-900.a0369ea5.eot);
-  src: url(..media/fa-solid-900.a0369ea5.eot?#iefix) format('embedded-opentype'),
-    url(..media/fa-solid-900.b15db15f.woff2) format('woff2'),
-    url(..media/fa-solid-900.bea989e8.woff) format('woff'),
-    url(..media/fa-solid-900.1ab236ed.ttf) format('truetype'),
-    url(..media/fa-solid-900.ec763292.svg#fontawesome) format('svg');
+  src: url(../media/fa-solid-900.a0369ea5.eot?#iefix) format('embedded-opentype'),
+    url(../media/fa-solid-900.b15db15f.woff2) format('woff2'),
+    url(../media/fa-solid-900.bea989e8.woff) format('woff'),
+    url(../media/fa-solid-900.1ab236ed.ttf) format('truetype'),
+    url(../media/fa-solid-900.ec763292.svg#fontawesome) format('svg');
 }
 .fa,
 .far,

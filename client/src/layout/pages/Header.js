@@ -5,33 +5,33 @@ import '../styles/Header.css';
 function Navigation(props) {
   return (
     <nav>
-      <ul className="nav-links">
-        <div className="logo">
-          <span className="brand-name">Gling</span>
-          <span className="brand-desc">Urban Bikes</span>
+      <ul className='nav-links'>
+        <div className='logo'>
+          <span className='brand-name'>Gling</span>
+          <span className='brand-desc'>Urban Bikes</span>
         </div>
         <li>
-          <Link to="/">Home</Link>
+          <Link to='/'>Home</Link>
         </li>
         <li>
-          <Link to="/Shop">Shop</Link>
+          <Link to='/Shop'>Shop</Link>
         </li>
         <li>
-          <Link to="/Blog">Blog</Link>
+          <Link to='/Blog'>Blog</Link>
         </li>
         <li>
-          <Link to="/FAQ">FAQ</Link>
+          <Link to='/FAQ'>FAQ</Link>
         </li>
         <li>
-          <Link to="/Contact">Contact</Link>
+          <Link to='/Contact'>Contact</Link>
         </li>
         <li>
-          <Link to="/Members">Members</Link>
+          <Link to='/Members'>Members</Link>
         </li>
         <li>
-          <button className="loginBTN" type="button">
-            <span className="user-icon far fa-user"></span>{' '}
-            <Link to="/Login">Log In</Link>
+          <button className='loginBTN' type='button'>
+            <span className='user-icon far fa-user'></span>{' '}
+            <Link to='/Login'>{props.name || 'Log in'}</Link>
           </button>
         </li>
       </ul>
@@ -39,6 +39,15 @@ function Navigation(props) {
     </nav>
   );
 }
+
+const LoginButton = props => (
+  <>
+    <button className='loginBTN' type='button'>
+      <span className='user-icon far fa-user'></span>{' '}
+      <Link to='/Login'>{props.name ? props.name : 'Log In'}</Link>
+    </button>
+  </>
+);
 
 function Header() {
   return (

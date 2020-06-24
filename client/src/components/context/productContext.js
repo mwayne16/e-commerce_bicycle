@@ -9,11 +9,11 @@ const formatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
   minimumFractionDigits: 2,
 });
-const ProductProvider = (props) => {
+const ProductProvider = props => {
   const { results, loading } = useDataFetching('/api/products');
   useEffect(() => {
     const fetchResults = () => {
-      results.map((product) => {
+      results.map(product => {
         product.price = formatter.format(product.price);
         return initialState.items.push(product);
       });

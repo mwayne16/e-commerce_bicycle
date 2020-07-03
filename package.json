@@ -21,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/mwayne16/e-commerce_bicycle/issues"
   },
-  "homepage": "http://localhost:3000",
-  "dependencies": {
-    "bootstrap": "^4.5.0"
-  }
+  "homepage": "http://localhost:3000"
 }

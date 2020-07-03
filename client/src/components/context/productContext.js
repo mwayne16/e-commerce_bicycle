@@ -12,6 +12,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 const ProductProvider = props => {
   const { results, loading } = useDataFetching('/api/products');
   useEffect(() => {
+    if (loading) return;
     const fetchResults = () => {
       results.map(product => {
         product.price = formatter.format(product.price);
@@ -19,7 +20,7 @@ const ProductProvider = props => {
       });
     };
     fetchResults();
-  }, [results]);
+  }, [results, loading]);
   const [products, dispatch] = useReducer(reducer, initialState);
   return loading ? (
     <div

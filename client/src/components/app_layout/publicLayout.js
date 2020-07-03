@@ -1,18 +1,19 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import PublicHeader from '../../layout/pages/Header';
-import PublicFooter from '../../layout/pages/Footer';
+import Header from '../../layout/pages/public/Header';
+import Footer from '../../layout/pages/public/Footer';
+
 const PublicLayout = props =>
   window.location.pathname !== '/Login' &&
   window.location.pathname !== '/Signup' ? (
     <>
-      <PublicHeader />
+      <Header />
       {props.children}
-      <PublicFooter />
+      <Footer />
     </>
   ) : (
     <>
-      <PublicHeader />
+      <Header />
       {props.children}
     </>
   );

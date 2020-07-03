@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 require('dotenv/config');
 //Create port on client enviroment or :3001
 const PORT = process.env.PORT || 8080;
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 //Body parser middleware
 app.use(express.json());
+app.use(cookieParser());
 // Handles URL encoded data. For example http post requests from forms
 app.use(express.urlencoded({ extended: false }));
 mongoose.set('useCreateIndex', true);

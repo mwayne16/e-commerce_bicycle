@@ -40,7 +40,7 @@ UserSchema.statics.validUser = async function (email) {
     return user;
   } catch (err) {
     throw {
-      userFound: false,
+      valid: false,
       message:
         'The email you entered does not match our records. Please try again.',
       error: err,
@@ -62,7 +62,7 @@ UserSchema.methods.validPassword = function (password) {
     .toString('hex');
   if (this.password !== hash)
     throw {
-      passwordValidated: false,
+      valid: false,
       message: 'Incorrect Password',
     };
   return this.password === hash;

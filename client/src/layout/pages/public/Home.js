@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Home.css';
+import '../../styles/Home.css';
 import { Link } from 'react-router-dom';
 
 function Hero() {
@@ -16,9 +16,9 @@ function Hero() {
     };
   }, []);
   return (
-    <section className="hero">
-      <div className="hero-container">
-        <div style={imgPos} className="hero-img"></div>
+    <section className='hero'>
+      <div className='hero-container'>
+        <div style={imgPos} className='hero-img'></div>
       </div>
     </section>
   );
@@ -26,16 +26,16 @@ function Hero() {
 // Refactor to make arrivals accept children props
 function Arrivals() {
   return (
-    <section className="arrivals">
+    <section className='arrivals'>
       <h1>New Arrivals</h1>
-      <div className="collection-showcase">
-        <div className="image-wrapper">
-          <img src={'assets/images/bike1.jpeg'} alt="urban bike #1" />
-          <img src={'assets/images/bike2.jpeg'} alt="urban bike #2" />
-          <img src={'assets/images/bike3.jpeg'} alt="urban bike #3" />
+      <div className='collection-showcase'>
+        <div className='image-wrapper'>
+          <img src={'assets/images/bike1.jpeg'} alt='urban bike #1' />
+          <img src={'assets/images/bike2.jpeg'} alt='urban bike #2' />
+          <img src={'assets/images/bike3.jpeg'} alt='urban bike #3' />
         </div>
-        <Link to="/shop">
-          <button type="button" id="collectionBTN" className="defaultButton">
+        <Link to='/shop'>
+          <button type='button' id='collectionBTN' className='defaultButton'>
             <h3>View Collection</h3>
           </button>
         </Link>
@@ -46,10 +46,10 @@ function Arrivals() {
 
 function About() {
   return (
-    <section className="about">
-      <div className="about-row-container">
-        <div className="about-descblock">
-          <div className="about-content-wrapper">
+    <section className='about'>
+      <div className='about-row-container'>
+        <div className='about-descblock'>
+          <div className='about-content-wrapper'>
             <h1>About Us</h1>
             <p>
               This is your About section. It’s a great space to tell your story
@@ -59,33 +59,33 @@ function About() {
               share personal anecdotes. Explain your core values and how you,
               your organization, or your business stand out from the crowd.
             </p>
-            <button className="defaultButton">
+            <button className='defaultButton'>
               <h3>Visit Us</h3>
             </button>
           </div>
         </div>
-        <div className="about-imgblock">
-          <img src={'assets/images/about1.jpeg'} alt="Urban Bikes Employees" />
+        <div className='about-imgblock'>
+          <img src={'assets/images/about1.jpeg'} alt='Urban Bikes Employees' />
         </div>
       </div>
-      <div className="about-row-container">
-        <div className="about-imgblock">
+      <div className='about-row-container'>
+        <div className='about-imgblock'>
           <img
             src={'assets/images/about2.jpeg'}
-            alt="Man on Urban Bikes Bicycle"
+            alt='Man on Urban Bikes Bicycle'
           />
         </div>
-        <div className="about-descblock">
-          <div className="about-content-wrapper">
-            <h1 className="alt-title">Cycle with Style</h1>
+        <div className='about-descblock'>
+          <div className='about-content-wrapper'>
+            <h1 className='alt-title'>Cycle with Style</h1>
             <p>
               I'm a paragraph. Click here to add your own text and edit me. It’s
               easy. Just click “Edit Text” or double click me to add your own
               content and make changes to the font. I’m a great place for you to
               tell a story and let your users know a little more about you.
             </p>
-            <button className="defaultButton alt-button">
-              <h3 className="alt-title">What's New</h3>
+            <button className='defaultButton alt-button'>
+              <h3 className='alt-title'>What's New</h3>
             </button>
           </div>
         </div>
@@ -98,7 +98,7 @@ function Home() {
     <React.Fragment>
       <Hero />
       <Arrivals />
-      <section className="highlighted-quote">
+      <section className='highlighted-quote'>
         <h1>
           <span>
             <h1>"</h1>

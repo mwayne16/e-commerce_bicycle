@@ -5,27 +5,29 @@ const source = CancelToken.source();
 function useDataFetching(dataSource, delay) {
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState();
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
   const config = axios.create({
     timeout: 5000,
     CancelToken: source.token,
   });
   const makeRequest = useCallback(
-    async (method, data) => {
-      console.log('ran request');
+    async (method, data, headers) => {
       try {
         const response = await axios({
           url: dataSource,
           method,
+          headers,
           data,
           config,
         });
+
         if (response.data.status !== 'success') throw response.data.message;
         setResults(response.data);
         setLoading(false);
         return response.data;
       } catch (err) {
-        setError(err);
+        setError({ error: true, message: err });
+        setLoading(false);
         console.log(err);
       }
     },

@@ -1,14 +1,18 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import Header from '../../layout/pages/public/Header';
-
-const PublicLayout = Component => {
-  return props => (
-    //Maybe do path and components as the prop to Route in Index?
-    //
-    <>
-      <Header />
-      <Component path={props.route} component={Component} />
-    </>
+import Footer from '../../layout/pages/public/Footer';
+import ScrollToTop from '../../components/ScrollToTop';
+const Scroll = withRouter(ScrollToTop);
+const removeFooter = ['/Login', '/Register'];
+const PublicLayout = ({ component: Component, routerProps, user, setUser }) => {
+  return (
+    <Scroll>
+      <Header user={user} setUser={setUser} />
+      <Component user={user} setUser={setUser} {...routerProps} />
+      {!removeFooter.includes(window.location.pathname) && <Footer />}
+    </Scroll>
   );
 };
-export default PublicLayout;
+
+export default withRouter(PublicLayout);

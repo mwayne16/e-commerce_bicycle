@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-const combineStoredValues = (arr) =>
+const combineStoredValues = (arr, key) =>
+  key === 'selected-products' &&
   arr.reduce(
     (acc, curr) => {
       if (curr.sku) {
@@ -55,7 +56,7 @@ function useLocalStorage(key, initialValue) {
 
   // ... persists the new value to localStorage.
 
-  const setValue = (value) => {
+  const setValue = value => {
     try {
       // Allow value to be a function so we have same API as useState
 
@@ -64,7 +65,7 @@ function useLocalStorage(key, initialValue) {
 
       // Save state
 
-      setStoredValue(combineStoredValues(valueToStore));
+      setStoredValue(combineStoredValues(valueToStore, key));
 
       // Save to local storage
 
@@ -76,7 +77,7 @@ function useLocalStorage(key, initialValue) {
     }
   };
   useEffect(() => {
-    setStoredValue(combineStoredValues(storedValue));
+    setStoredValue(combineStoredValues(storedValue, key));
   }, []);
 
   return [storedValue, setValue];

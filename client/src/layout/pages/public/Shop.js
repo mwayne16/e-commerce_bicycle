@@ -4,7 +4,6 @@ import {
   ColorSelector,
   SortProductsCard,
 } from '../../../components/Filters';
-
 import { Transition } from 'react-transition-group';
 import ProductModal from '../../../components/modals/ProductModal';
 import { Link } from 'react-router-dom';
@@ -27,7 +26,7 @@ function FilterCard() {
       zIndex: -1,
     },
   };
-  const { ...props } = useContext(ProductContext);
+  const { ...props } = React.useContext(ProductContext);
   const [toggled, updateToggle] = useState({ price: true, color: false });
   const [highlightedColor, updateColor] = useState('');
   const targetedColor = color => {
@@ -170,7 +169,7 @@ function Products(props) {
   );
 }
 
-function ProductGalleryContainer(props) {
+function ProductGalleryContainer() {
   const { products } = React.useContext(ProductContext);
   const [filter, setFilter] = useState(products.items);
 

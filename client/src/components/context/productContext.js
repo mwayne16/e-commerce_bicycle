@@ -16,11 +16,12 @@ const ProductProvider = props => {
     const fetchResults = () => {
       results.map(product => {
         product.price = formatter.format(product.price);
-        return initialState.items.push(product);
+        initialState.items.push(product);
+        initialState.items.sort((a, b) => a.key - b.key);
       });
     };
     fetchResults();
-  }, [results, loading]);
+  }, [loading]);
   const [products, dispatch] = useReducer(reducer, initialState);
   return loading ? (
     <div
@@ -35,7 +36,7 @@ const ProductProvider = props => {
       <ReactLoading type={'bubbles'} color={'#294057'} />
     </div>
   ) : (
-    <ProductContext.Provider value={{ products, dispatch }}>
+    <ProductContext.Provider value={{ products, dispatch, loading }}>
       {props.children}
     </ProductContext.Provider>
   );

@@ -9,15 +9,23 @@ const jwt = require('jsonwebtoken');
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) return res.sendStatus(401);
-
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
-    if (err) return res.sendStatus(403);
-    console.log(payload);
+    if (err) return (req.error = err);
+    return (req.payload = payload);
   });
   next();
 };
-
+router.get('/validate_stored_token', authenticateToken, async (req, res) => {
+  try {
+    if (req.error) throw req.error;
+    res.json({ status: 'success', data: req.payload.payload });
+  } catch (err) {
+    return res.json({
+      status: 'fail',
+      message: err,
+    });
+  }
+});
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
   const user = new User({
@@ -27,16 +35,20 @@ router.post('/register', async (req, res) => {
   });
   try {
     await user.validate();
-    user.save(user.setPassword(user.password)).then(
-      res.json({
-        status: 'success',
-        data: {
-          user: user.name,
-          email: user.email,
-          id: user.id,
-        },
-      })
-    );
+    user.save(user.setPassword(user.password));
+    const payload = {
+      user: user.name,
+      email,
+      id: user.id,
+    };
+
+    const accessToken = jwt.sign({ payload }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: '1 Hour',
+    });
+    res.json({
+      status: 'success',
+      data: { accessToken, user: payload },
+    });
   } catch (err) {
     console.log(err);
     res.json({
@@ -60,7 +72,7 @@ router.post('/login', async (req, res) => {
     'Content-Type': 'application/vnd.api+json',
   });
 
-  logIn = async ({ email, password }) => {
+  const logIn = async ({ email, password }) => {
     try {
       const user = await User.validUser(email);
       user.validPassword(password);
@@ -75,13 +87,13 @@ router.post('/login', async (req, res) => {
         { payload },
         process.env.ACCESS_TOKEN_SECRET,
         {
-          expiresIn: '1h',
+          expiresIn: '1 Hour',
         }
       );
 
       return res.json({
         status: 'success',
-        data: { accessToken, user: { name: user.name, id: user.id } },
+        data: { accessToken, user: payload },
       });
     } catch (err) {
       res.json({ status: 'fail', message: err.message, data: err });

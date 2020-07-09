@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { CartItemsContext } from '../context/cartContext';
 import { CartModalContext } from '../context/modalContext';
+
 import '../../layout/styles/CartModal.css';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import ProductItemPage from '../ProductItemPage';
 function CartButton(props) {
   const [toggled, setToggle] = React.useContext(CartModalContext);
   return (
     <button
       onClick={() => setToggle(!toggled)}
       style={{ ...styles.button }}
-      className="toggleCartWidget"
+      className='toggleCartWidget'
     >
-      <i className="fas fa-shopping-bag">
-        <p className="bagCount">{props.itemCount}</p>
+      <i className='fas fa-shopping-bag'>
+        <p className='bagCount'>{props.itemCount}</p>
       </i>
       <p
         style={{
@@ -48,25 +50,26 @@ function CartModal() {
       animation: 'modalArrow-onExit 1s forwards',
     },
   };
+
   return (
     <aside
       style={transition ? modalStyles.modalExit : null}
-      className="cart-popout-modal"
+      className='cart-popout-modal'
     >
-      <header className="cart-modal-header">
+      <header className='cart-modal-header'>
         <span
           style={transition ? modalStyles.arrowExit : null}
           onClick={handleModal}
-          className="fas fa-chevron-right"
+          className='fas fa-chevron-right'
         ></span>
         <h1>Cart</h1>
       </header>
       <main>
-        <div className="cart-modal-product">
+        <div className='cart-modal-product'>
           <ul>
             {products.map(({ sku, name, quanity, price, color, src, key }) => (
-              <li key={key} data-active="false" className="cart-modal-item">
-                <div className="item-wrapper">
+              <li key={key} data-active='false' className='cart-modal-item'>
+                <div className='item-wrapper'>
                   <Link
                     to={{
                       pathname: '/Products',
@@ -75,23 +78,22 @@ function CartModal() {
                   >
                     <aside
                       onClick={handleModal}
-                      className="item-image"
+                      className='item-image'
                       style={{
                         background: `url(${src}) no-repeat left center / contain  `,
                       }}
                     ></aside>
                   </Link>
-                  <div className="item-info">
-                    <div className="item-header">
+                  <div className='item-info'>
+                    <div className='item-header'>
                       <h2>{name}</h2>
-
                       <span
                         onClick={() =>
                           setProduct(
-                            products.filter((product) => product.sku !== sku)
+                            products.filter(product => product.sku !== sku)
                           )
                         }
-                        className="far fa-times-circle"
+                        className='far fa-times-circle'
                       ></span>
                     </div>
                     <p>QTY:{quanity}</p>
@@ -102,13 +104,13 @@ function CartModal() {
             ))}
           </ul>
         </div>
-        <div className="cart-modal-total">
+        <div className='cart-modal-total'>
           <h1>Subtotal</h1>
           <h1>{subTotal}</h1>
         </div>
       </main>
 
-      <footer className="modal-footer">
+      <footer className='modal-footer'>
         <Link
           to={{
             pathname: '/Checkout',
@@ -116,8 +118,8 @@ function CartModal() {
         >
           <button
             onClick={handleModal}
-            className="product-item-addToCart defaultButton alt-button"
-            type="button"
+            className='product-item-addToCart defaultButton alt-button'
+            type='button'
           >
             View Cart
           </button>

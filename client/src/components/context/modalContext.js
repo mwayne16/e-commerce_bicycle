@@ -7,7 +7,7 @@ import { CartModal } from '../modals/CartWidget';
 
 const portal = document.querySelector('#cart-modal');
 const CartModalContext = React.createContext(null);
-const ModalProvider = (props) => {
+const ModalProvider = props => {
   const [toggled, setToggle] = useState(false);
 
   // Put cart Modal between <Modal></Modal>

@@ -1,104 +1,161 @@
-import React, { useState, useRef, useCallback } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 
 import { UserContext } from '../../../components/context/userContext';
 import useDataFetching from '../../../components/custom_hooks/useDataFetching';
 import '../../styles/Login.css';
 
-function Login(props) {
-  //Once a user is sucessfull in login, have a popout box with a sucess message
-  // Redirect the user back to their previous location
-  // Turn login button to dropdown menu with
-  //profile, orders
-
+const FormWrapper = ({ component: Component, children, props }) => {
+  const { user, setUser } = React.useContext(UserContext);
   const [form, updateForm] = useState({});
-  const { makeRequest, error } = useDataFetching('/api/users/login', true);
-
-  const onSubmit = async e => {
-    e.preventDefault();
-    const logIn = async ({ email, password }) => {
-      const res = await makeRequest('POST', { email, password });
-      props.setUser(res && res.data);
-    };
-    return logIn(form);
-  };
 
   const onChange = e =>
     updateForm({ ...form, [e.target.name]: e.target.value });
   return (
-    <section className='user-login'>
-      <form autoComplete='on' className='login-form' onSubmit={onSubmit}>
-        <h1 className='login-header'>Member Login</h1>
-        {error && <ValidationMessage message={error} />}
-        <div className='input-container'>
-          <label htmlFor='email'></label>
-          <input
-            placeholder='Email'
-            name='email'
-            type='email'
-            id='email'
-            value={form.email || ''}
-            onChange={onChange}
-            required
-          />
-          <label htmlFor='password'></label>
-          <input
-            placeholder='Password'
-            name='password'
-            type='password'
-            id='password'
-            value={form.password || ''}
-            onChange={onChange}
-          />
-          <button className='login-submit' type='submit' value='submit'>
-            Login
-          </button>
-        </div>
-      </form>
-    </section>
-  );
-}
-const UserAuth = props => {
-  const { user, setUser } = React.useContext(UserContext);
-  return (
     <>
-      {user && <Redirect to={props.location.state.prevPath} />}
-      <Login setUser={setUser} />
+      {user && (
+        <Redirect
+          to={props.location.state ? props.location.state.prevPath : '/'}
+        />
+      )}
+      <Component {...props} form={form} setUser={setUser} onChange={onChange}>
+        {children}
+      </Component>
     </>
   );
 };
-const ValidationMessage = props => (
-  <div className='auth-error-box'>
-    <h1>{props.message}</h1>
+
+const FormHeader = props => (
+  <div className='login-head-wrapper'>
+    <h1 className='user-icon far fa-user' id='login-icon'></h1>
+    <h1 className='login-header'>{props.header}</h1>
   </div>
 );
-export { UserAuth };
-//  const response =  Axios({
-//     method: 'POST',
-//     url: '/api/users/login',
-//     data: {
-//       email: form.email,
-//       password: form.password,
-//     },
-//   })
-// response.data
-//   .then(res =>
-//     res.data.status === 'success'
-//       ? setUser(res.data)
-//       : updateForm({
-//           ...form,
-//           status: { authenticated: false, message: res.data.message },
-//         })
-//   )
-//   .catch(err => console.log(err));
 
-// const onSubmit = async e => {
-//   e.preventDefault();
-//   await makeRequest('POST', { name: 'Marcus' });
-//   console.log(results);
-// };
+const InputGenerator = props => (
+  <>
+    <label htmlFor={props.name}>{props.labelText}</label>
+    <input
+      name={props.name}
+      type={props.name}
+      id={props.name}
+      value={props.value || ''}
+      onChange={props.onChange}
+      required
+    />
+  </>
+);
+function LoginForm(props) {
+  const { makeRequest, error } = useDataFetching('/api/users/login', true);
+  const { email, password } = props.form;
+  const onSubmit = async e => {
+    e.preventDefault();
+    const logIn = async () => {
+      const res = await makeRequest('POST', { email, password });
+      props.setUser(res && res.data);
+    };
+    return logIn();
+  };
+
+  return (
+    <section className='user-login'>
+      <div className='user-form-container'>
+        <FormHeader header={'Sign in to Gling'} />
+        <ValidationMessage error={error} message={error.message} />
+        <div className='login-form-wrapper'>
+          <form autoComplete='on' className='login-form' onSubmit={onSubmit}>
+            <div className='input-container'>
+              <InputGenerator
+                labelText={'Email Address'}
+                name={'email'}
+                value={email}
+                onChange={props.onChange}
+              />
+              <InputGenerator
+                labelText={'Password'}
+                name={'password'}
+                value={password}
+                onChange={props.onChange}
+              />
+              <button className='login-submit' type='submit' value='submit'>
+                Sign in
+              </button>
+            </div>
+          </form>
+        </div>
+        <SignUpBox />
+      </div>
+    </section>
+  );
+}
+
+function RegisterForm(props) {
+  const { makeRequest, error } = useDataFetching('/api/users/register', true);
+  const onSubmit = async e => {
+    e.preventDefault();
+    const registerAccount = async () => {
+      const res = await makeRequest('POST', { name, email, password });
+      props.setUser(res && res.data);
+    };
+    return registerAccount();
+  };
+  const { name, email, password } = props.form;
+  return (
+    <section className='user-login'>
+      <div className='user-form-container'>
+        <FormHeader header={'Register an account'} />
+        <ValidationMessage error={error} message={error.message} />
+        <div className='login-form-wrapper'>
+          <form autoComplete='on' className='login-form' onSubmit={onSubmit}>
+            <div className='input-container'>
+              <InputGenerator
+                labelText={'Your Name'}
+                name={'name'}
+                value={name}
+                onChange={props.onChange}
+              />
+              <InputGenerator
+                labelText={'Email Address'}
+                name={'email'}
+                value={email}
+                onChange={props.onChange}
+              />
+              <InputGenerator
+                labelText={'Password'}
+                name={'password'}
+                value={password}
+                onChange={props.onChange}
+              />
+              <button className='login-submit' type='submit' value='submit'>
+                Sign in
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+const SignUpBox = () => (
+  <div className='sign-up-box'>
+    <p>New to Gling? </p>
+    <Link className='default-link' to='/Register'>
+      Create an account.
+    </Link>
+  </div>
+);
+
+const ValidationMessage = props =>
+  props.error && (
+    <div className='auth-error-box'>
+      <h1>{props.message}</h1>
+    </div>
+  );
+
+const Login = props => (
+  <FormWrapper props={props} component={LoginForm}></FormWrapper>
+);
+const Register = props => (
+  <FormWrapper props={props} component={RegisterForm}></FormWrapper>
+);
+export { Login, Register };

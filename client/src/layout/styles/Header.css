@@ -64,10 +64,16 @@ p.bagCount {
   color: #fff;
 }
 .loginBTN {
+  max-width: 100px;
+  height: 50px;
   font-size: 0.9em;
-  padding: 0.5em 1em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  overflow: hidden;
 }
 .loginBTN .user-icon {
+  position: relative;
   width: 25px;
   height: 25px;
   line-height: 25px;
@@ -75,4 +81,47 @@ p.bagCount {
   border-radius: 50%;
   background: #294057;
   margin-right: 5px;
+}
+.loginBTN a {
+  position: relative;
+  max-width: 70px;
+  max-height: 25px;
+  line-height: 25px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.profile-menu {
+  overflow: hidden;
+  max-width: 120px;
+}
+.profile-menu .loginBTN {
+  padding: 0;
+}
+.profile-menu:hover #profile-drop {
+  visibility: visible;
+  opacity: 1;
+}
+.drop-down ul {
+  padding-top: 0.5em;
+}
+#profile-drop {
+  position: absolute;
+  display: block;
+  transition: 0.2s linear all;
+  visibility: hidden;
+  opacity: 0;
+  max-width: inherit;
+}
+#profile-drop li {
+  padding: 0;
+}
+#profile-drop li:hover {
+  background: rgb(41, 64, 87);
+}
+#profile-drop li a:hover {
+  color: #fff;
+}
+#profile-drop li a {
+  display: block;
+  padding: 0.4em;
 }

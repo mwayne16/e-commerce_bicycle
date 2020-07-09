@@ -3,16 +3,22 @@ import Shop from '../../layout/pages/public/Shop';
 import Contact from '../../layout/pages/public/Contact';
 import FAQ from '../../layout/pages/public/FAQ';
 import Checkout from '../../layout/pages/public/Checkout';
-import { UserAuth } from '../../layout/pages/public/UserAuth';
+import { Login, Register } from '../../layout/pages/public/UserAuth';
+import ProductItemPage from '../../components/ProductItemPage';
 
 export default {
   Home: {
     component: Home,
     path: '/',
+    exact: true,
   },
   Shop: {
     component: Shop,
     path: '/Shop',
+  },
+  ProductItemPage: {
+    component: ProductItemPage,
+    path: '/Products',
   },
   Contact: {
     component: Contact,
@@ -26,8 +32,12 @@ export default {
     component: Checkout,
     path: '/Checkout',
   },
-  UserAuth: {
-    component: UserAuth,
+  Login: {
+    component: Login,
     path: '/Login',
+  },
+  Register: {
+    component: Register,
+    path: '/Register',
   },
 };

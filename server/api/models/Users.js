@@ -41,8 +41,7 @@ UserSchema.statics.validUser = async function (email) {
   } catch (err) {
     throw {
       valid: false,
-      message:
-        'The email you entered does not match our records. Please try again.',
+      message: 'No matching user with that email.',
       error: err,
     };
   }

@@ -9,15 +9,15 @@ export default function ProductItemPage(props) {
   const [currentProduct, setProduct] = useState(props.location.state);
   const { products } = React.useContext(ProductContext);
 
-  const handleNavigation = (productKey) =>
-    setProduct(products.items.find((product) => product.key === productKey));
+  const handleNavigation = productKey =>
+    setProduct(products.items.find(product => product.key === productKey));
 
   useEffect(() => {
     setProduct(props.location.state);
   }, [props.location.state]);
 
   return (
-    <section className="product-page">
+    <section className='product-page'>
       <ProductItemHeader
         {...props}
         products={products}
@@ -34,7 +34,7 @@ function ProductItemDescription() {
   const [toggle, setToggle] = useState(false);
   return (
     <>
-      <div data-readmore={toggle} className="product-description">
+      <div data-readmore={toggle} className='product-description'>
         <p>
           I'm a product description. This is a great place to "sell" your
           product and grab buyers' attention. Describe your product clearly and
@@ -53,7 +53,7 @@ function ProductItemDescription() {
 
           color: '#424242',
         }}
-        type="button"
+        type='button'
         onClick={() => setToggle(!toggle)}
       >
         Read more
@@ -62,31 +62,31 @@ function ProductItemDescription() {
   );
 }
 function ProductItemHeader(props) {
-  const findIndex = (key) =>
+  const findIndex = key =>
     props.products.items.indexOf(
-      props.products.items.find((product) => product.key === key)
+      props.products.items.find(product => product.key === key)
     );
 
-  const sendKeyToParent = (key) =>
+  const sendKeyToParent = key =>
     findIndex(key) !== -1 ? props.setProduct(key) : null;
 
   return (
-    <header className="product-heading">
-      <nav className="product-nav">
-        <div className="product-breadcrumbs">
-          <Link to="/">Home /</Link>
-          <Link to="shop">Shop /</Link>
+    <header className='product-heading'>
+      <nav className='product-nav'>
+        <div className='product-breadcrumbs'>
+          <Link to='/'>Home /</Link>
+          <Link to='shop'>Shop /</Link>
           <p>{props.item.name}</p>
         </div>
-        <div className="navigation-button-container">
-          <ul className="navigation-buttons">
+        <div className='navigation-button-container'>
+          <ul className='navigation-buttons'>
             <li
               style={{
                 opacity: findIndex(props.item.key) >= 1 ? 1 : 0.5,
               }}
               onClick={sendKeyToParent.bind(this, props.item.key - 1)}
             >
-              <span className="fas fa-chevron-left"></span>Prev
+              <span className='fas fa-chevron-left'></span>Prev
             </li>
             {' | '}
             <li
@@ -98,7 +98,7 @@ function ProductItemHeader(props) {
               }}
               onClick={sendKeyToParent.bind(this, props.item.key + 1)}
             >
-              Next <span className="fas fa-chevron-right"></span>
+              Next <span className='fas fa-chevron-right'></span>
             </li>
           </ul>
         </div>
@@ -113,7 +113,7 @@ function ProductItemMain(props) {
   const { products, setProduct } = React.useContext(CartItemsContext);
   const [toggled, setToggle] = React.useContext(CartModalContext);
 
-  const addItemToCart = (item) => {
+  const addItemToCart = item => {
     setProduct(item);
     setToggle(!toggled);
     if (props.close) {
@@ -123,24 +123,24 @@ function ProductItemMain(props) {
 
   const { name, sku, price, color, src, key } = props.item;
 
-  const updateQuanityFromChild = (value) => setQuanity(value);
+  const updateQuanityFromChild = value => setQuanity(value);
 
   return (
-    <main className="product-container">
-      <div className="product-item">
+    <main className='product-container'>
+      <div className='product-item'>
         <div
           style={{
             background: `url(${src}) no-repeat center / 85%`,
           }}
-          className="product-item-img"
+          className='product-item-img'
         ></div>
-        <div className="product-item-overview">
-          <h1 className="product-item-title">{name}</h1>
-          <p className="product-item-sku">SKU: {sku}</p>
-          <p className="product-item-price">{price}</p>
+        <div className='product-item-overview'>
+          <h1 className='product-item-title'>{name}</h1>
+          <p className='product-item-sku'>SKU: {sku}</p>
+          <p className='product-item-price'>{price}</p>
           {props.children}
-          <p className="product-item-colorText">Color: {color}</p>
-          <p className="product-item-color" style={{ background: color }}></p>
+          <p className='product-item-colorText'>Color: {color}</p>
+          <p className='product-item-color' style={{ background: color }}></p>
           <ProductQuanityBox
             returnedValue={updateQuanityFromChild}
             quanity={quanity}
@@ -150,8 +150,8 @@ function ProductItemMain(props) {
               ...products,
               { name, sku, price, color, src, key, quanity },
             ])}
-            className="product-item-addToCart defaultButton alt-button"
-            type="button"
+            className='product-item-addToCart defaultButton alt-button'
+            type='button'
             value={sku}
           >
             Add To Cart

@@ -10,6 +10,7 @@ function useDataFetching(dataSource, delay) {
     timeout: 5000,
     CancelToken: source.token,
   });
+
   const makeRequest = useCallback(
     async (method, data, headers) => {
       try {
@@ -28,7 +29,6 @@ function useDataFetching(dataSource, delay) {
       } catch (err) {
         setError({ error: true, message: err });
         setLoading(false);
-        console.log(err);
       }
     },
     [dataSource]
@@ -38,12 +38,14 @@ function useDataFetching(dataSource, delay) {
     async function fetchData() {
       if (delay) return;
       try {
-        const response = await axios.request(dataSource, config);
-        setResults([...response.data]);
+        const response = await axios.get(dataSource, config);
+        console.log(response.data);
+        if (response.data.status !== 'success') throw response.data.message;
+        setResults([...response.data.data]);
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.log(error);
+        setError(error);
       }
     }
     fetchData();

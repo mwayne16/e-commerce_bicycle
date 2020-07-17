@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../../styles/Contact.css';
 function Contact() {
   return (
@@ -15,7 +14,7 @@ function Contact() {
               <p>San Francisco, CA 94158</p>
               <p>info@mysite.com | Tel. 123-456-7890</p>
               <a className='scrollToElement' href='#google-map'>
-                View Map >
+                View Map
               </a>
             </div>
           </div>

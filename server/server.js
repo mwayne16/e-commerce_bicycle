@@ -24,7 +24,8 @@ mongoose.set('useCreateIndex', true);
 app.use('/api/products', require('./api/routes/products'));
 //Users
 app.use('/api/users', require('./api/routes/users'));
-
+//Blog Posts
+app.use('/api/posts', require('./api/routes/posts'));
 //Connect to DB
 mongoose.connect(
   process.env.DB_CONNECTION,

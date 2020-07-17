@@ -127,7 +127,7 @@ function RegisterForm(props) {
                 onChange={props.onChange}
               />
               <button className='login-submit' type='submit' value='submit'>
-                Sign in
+                Sign Up
               </button>
             </div>
           </form>
@@ -139,7 +139,7 @@ function RegisterForm(props) {
 const SignUpBox = () => (
   <div className='sign-up-box'>
     <p>New to Gling? </p>
-    <Link className='default-link' to='/Register'>
+    <Link className='default-link' to='/register'>
       Create an account.
     </Link>
   </div>

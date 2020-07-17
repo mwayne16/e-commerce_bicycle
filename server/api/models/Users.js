@@ -1,25 +1,28 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const crypto = require('crypto');
-
+const validator = val => {
+  console.log(val, mongoose.model['Users']);
+  return val.length >= UserSchema.password;
+};
 const UserSchema = mongoose.Schema(
   {
     name: {
       type: String,
       required: [true, 'Please enter your name'],
-      max: 20,
+      maxlength: [20, 'Name must not be greater than 20 characters'],
     },
     email: {
       type: String,
       unique: true,
       required: true,
       index: true,
-      max: 96,
+      maxlength: [96, 'Email must not be greater than 96 characters'],
     },
     password: {
       type: String,
       required: true,
-      minLength: [8, 'Password must contain at least eight characters'],
+      minlength: [8, 'Password must have at least 8 characters'],
     },
 
     salt: String,

@@ -4,7 +4,7 @@ import Header from '../../layout/pages/public/Header';
 import Footer from '../../layout/pages/public/Footer';
 import ScrollToTop from '../../components/ScrollToTop';
 const Scroll = withRouter(ScrollToTop);
-const removeFooter = ['/Login', '/Register'];
+const removeFooter = ['/login', '/register'];
 const PublicLayout = ({ component: Component, routerProps, user, setUser }) => {
   return (
     <Scroll>

@@ -6,20 +6,20 @@ import { ProductProvider } from '../components/context/productContext';
 import { CartProvider } from '../components/context/cartContext';
 import { UserProvider, UserContext } from '../components/context/userContext';
 import { ModalProvider } from '../components/context/modalContext';
-
+import NotFound from '../layout/pages/public/404';
 export default function Template() {
   const { user, setUser } = React.useContext(UserContext);
   return (
     <Router>
-      <Switch>
-        <ProductProvider>
-          <CartProvider>
-            <ModalProvider>
+      <ProductProvider>
+        <CartProvider>
+          <ModalProvider>
+            <Switch>
               {Object.entries(PublicRoutes).map((route, key) => {
                 const { component, path, exact } = route[1];
                 return (
                   <Route
-                    exact={exact}
+                    exact
                     path={path}
                     key={key}
                     render={history => (
@@ -33,10 +33,11 @@ export default function Template() {
                   />
                 );
               })}
-            </ModalProvider>
-          </CartProvider>
-        </ProductProvider>
-      </Switch>
+              <Route component={NotFound} />
+            </Switch>
+          </ModalProvider>
+        </CartProvider>
+      </ProductProvider>
     </Router>
   );
 }

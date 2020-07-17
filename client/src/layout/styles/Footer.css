@@ -3,12 +3,12 @@ footer {
   position: relative;
   background: #294057;
 }
-.social-bar {
+.social-footer-bar {
   position: relative;
   max-width: 100%;
   background: #b99867;
 }
-.social-bar ul {
+.social-footer-bar ul {
   position: relative;
   list-style: none;
   display: inline-flex;
@@ -19,11 +19,11 @@ footer {
   width: 350px;
 }
 
-.social-bar li {
+.social-footer-bar li {
   padding: 2em 0;
 }
 
-.social-bar a {
+.social-footer-bar a {
   color: #fff;
   text-decoration: none;
   font-size: 2.5em;

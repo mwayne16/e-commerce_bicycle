@@ -16,19 +16,19 @@ function Navigation(props) {
           <NavLink to='/'>Home</NavLink>
         </li>
         <li>
-          <NavLink to='/Shop'>Shop</NavLink>
+          <NavLink to='/shop'>Shop</NavLink>
         </li>
         <li>
-          <NavLink to='/Blog'>Blog</NavLink>
+          <NavLink to='/blog'>Blog</NavLink>
         </li>
         <li>
-          <NavLink to='/FAQ'>FAQ</NavLink>
+          <NavLink to='/faq'>FAQ</NavLink>
         </li>
         <li>
-          <NavLink to='/Contact'>Contact</NavLink>
+          <NavLink to='/contact'>Contact</NavLink>
         </li>
         <li>
-          <NavLink to='/Members'>Members</NavLink>
+          <NavLink to='/members'>Members</NavLink>
         </li>
         <li>{props.children}</li>
       </ul>
@@ -40,7 +40,7 @@ function Navigation(props) {
 const LoginButton = props => (
   <Link
     to={{
-      pathname: '/Login',
+      pathname: '/login',
       state: { prevPath: window.location.pathname },
     }}
   >
@@ -55,18 +55,21 @@ const ProfileButton = props => (
   <div className='profile-menu'>
     <button className='loginBTN' type='button'>
       <span className='user-icon far fa-user'></span>
-      <Link to='/Profile'>{props.name}</Link>
+      <Link to='/profile'>{props.name}</Link>
     </button>
     <nav className='drop-down' id='profile-drop'>
       <ul>
         <li>
-          <Link to='/Profile'>Profile</Link>
+          <Link to='/profile'>Profile</Link>
         </li>
         <li>
-          <Link to='/User/Orders'>Orders</Link>
+          <Link to='/user/orders'>Orders</Link>
         </li>
         <li>
-          <Link to='/User/Settings'>Settings</Link>
+          <Link to='/user/settings'>Settings</Link>
+        </li>
+        <li>
+          <Link to='/user/logout'>Logout</Link>
         </li>
       </ul>
     </nav>

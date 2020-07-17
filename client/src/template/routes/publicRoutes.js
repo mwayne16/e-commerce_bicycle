@@ -3,6 +3,7 @@ import Shop from '../../layout/pages/public/Shop';
 import Contact from '../../layout/pages/public/Contact';
 import FAQ from '../../layout/pages/public/FAQ';
 import Checkout from '../../layout/pages/public/Checkout';
+import { Blog, Post } from '../../layout/pages/public/Blog';
 import { Login, Register } from '../../layout/pages/public/UserAuth';
 import ProductItemPage from '../../components/ProductItemPage';
 
@@ -14,30 +15,38 @@ export default {
   },
   Shop: {
     component: Shop,
-    path: '/Shop',
+    path: '/shop',
   },
   ProductItemPage: {
     component: ProductItemPage,
-    path: '/Products',
+    path: '/products',
   },
   Contact: {
     component: Contact,
-    path: '/Contact',
+    path: '/contact',
   },
   FAQ: {
     component: FAQ,
-    path: '/FAQ',
+    path: '/faq',
   },
   Checkout: {
     component: Checkout,
-    path: '/Checkout',
+    path: '/checkout',
   },
   Login: {
     component: Login,
-    path: '/Login',
+    path: '/login',
   },
   Register: {
     component: Register,
-    path: '/Register',
+    path: '/register',
+  },
+  Blog: {
+    component: Blog,
+    path: '/blog',
+  },
+  Post: {
+    component: Post,
+    path: '/blog/post/:postid',
   },
 };

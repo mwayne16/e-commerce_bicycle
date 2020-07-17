@@ -4,7 +4,7 @@ import '../../styles/Footer.css';
 function Footer() {
   return (
     <footer>
-      <div className='social-bar'>
+      <div className='social-footer-bar'>
         <ul>
           <li>
             <Link to='/'>

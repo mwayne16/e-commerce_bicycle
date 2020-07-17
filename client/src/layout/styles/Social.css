@@ -1,0 +1,20 @@
+.blog-social-bar-container {
+  width: 100%;
+  font-size: 1.5em;
+}
+.blog-social-list-wrapper {
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+#blog .blog-social-list {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  padding: 1.5em 0;
+}
+.blog-social-list li {
+  color: #222;
+}

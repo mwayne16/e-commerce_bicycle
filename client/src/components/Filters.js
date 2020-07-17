@@ -57,6 +57,7 @@ function ColorSelector(props) {
     });
   }, [color]);
 
+  //<----------------DRY!------------------->
   return (
     <>
       <li

@@ -2,7 +2,6 @@ import React, { useReducer, useEffect } from 'react';
 import { reducer, initialState } from '../../reducers/productReducer';
 import useDataFetching from '../custom_hooks/useDataFetching';
 import ReactLoading from 'react-loading';
-// Try setting the useDataFetching hook here
 const ProductContext = React.createContext(null);
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',

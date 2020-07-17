@@ -75,7 +75,7 @@ const ProfileButton = props => (
     </nav>
   </div>
 );
-// text-overflow: ellipsis;
+
 function Header(props) {
   return (
     <header>

@@ -27,7 +27,7 @@ const FormWrapper = ({ component: Component, children, props }) => {
 
 const FormHeader = props => (
   <div className='login-head-wrapper'>
-    <h1 className='user-icon far fa-user' id='login-icon'></h1>
+    <span className='user-icon far fa-user' id='login-icon' />
     <h1 className='login-header'>{props.header}</h1>
   </div>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import Template from './template';
-import './layout/styles/App.css';
 import { UserProvider } from './components/context/userContext';
+import './layout/styles/App.css';
 
 function App() {
   return (

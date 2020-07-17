@@ -4,7 +4,7 @@ import PublicLayout from './public';
 import PublicRoutes from './routes/publicRoutes';
 import { ProductProvider } from '../components/context/productContext';
 import { CartProvider } from '../components/context/cartContext';
-import { UserProvider, UserContext } from '../components/context/userContext';
+import { UserContext } from '../components/context/userContext';
 import { ModalProvider } from '../components/context/modalContext';
 import NotFound from '../layout/pages/public/404';
 export default function Template() {
@@ -16,7 +16,7 @@ export default function Template() {
           <ModalProvider>
             <Switch>
               {Object.entries(PublicRoutes).map((route, key) => {
-                const { component, path, exact } = route[1];
+                const { component, path } = route[1];
                 return (
                   <Route
                     exact

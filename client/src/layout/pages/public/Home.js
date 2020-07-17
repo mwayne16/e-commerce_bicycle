@@ -59,9 +59,11 @@ function About() {
               share personal anecdotes. Explain your core values and how you,
               your organization, or your business stand out from the crowd.
             </p>
-            <button className='defaultButton'>
-              <h3>Visit Us</h3>
-            </button>
+            <Link to='/contact'>
+              <button className='defaultButton'>
+                <h3>Visit Us</h3>
+              </button>
+            </Link>
           </div>
         </div>
         <div className='about-imgblock'>
@@ -84,9 +86,11 @@ function About() {
               content and make changes to the font. I’m a great place for you to
               tell a story and let your users know a little more about you.
             </p>
-            <button className='defaultButton alt-button'>
-              <h3 className='alt-title'>What's New</h3>
-            </button>
+            <Link to='/blog'>
+              <button className='defaultButton alt-button'>
+                <h3 className='alt-title'>What's New</h3>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -116,5 +120,3 @@ function Home() {
 }
 
 export default Home;
-
-// transform: `translate(${offSet / 20}%,${offSet / -3}%)`

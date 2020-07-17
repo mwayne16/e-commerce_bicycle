@@ -59,7 +59,6 @@ router.post('/register', async (req, res) => {
       },
     });
   }
-  //   res.redirect('http://localhost:3000/');
 });
 //Log In
 //Finish setting up authorization middleware

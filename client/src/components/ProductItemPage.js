@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../layout/styles/ProductPage.css';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CartItemsContext } from './context/cartContext';
 import { CartModalContext } from './context/modalContext';
 import { ProductContext } from './context/productContext';
 import ProductQuanityBox from './ProductQuanity';
+import '../layout/styles/ProductPage.css';
 export default function ProductItemPage(props) {
   const [currentProduct, setProduct] = useState(props.location.state);
   const { products } = React.useContext(ProductContext);
@@ -107,12 +107,9 @@ function ProductItemHeader(props) {
   );
 }
 function ProductItemMain(props) {
-  // Try something like useRef to set the quanity value then an updater function that grabs the value from it's parent to set the current
-
   let [quanity, setQuanity] = useState(1);
   const { products, setProduct } = React.useContext(CartItemsContext);
   const [toggled, setToggle] = React.useContext(CartModalContext);
-
   const addItemToCart = item => {
     setProduct(item);
     setToggle(!toggled);
@@ -120,9 +117,7 @@ function ProductItemMain(props) {
       props.close();
     }
   };
-
   const { name, sku, price, color, src, key } = props.item;
-
   const updateQuanityFromChild = value => setQuanity(value);
 
   return (

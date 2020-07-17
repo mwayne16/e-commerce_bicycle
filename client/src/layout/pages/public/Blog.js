@@ -9,7 +9,7 @@ const parseDate = date => {
   return parsedDate.toDateString().split(' ').slice(1, 3).join(' ');
 };
 function Blog() {
-  const { results, loading, error } = useDataFetching('/api/posts/?sort=-date');
+  const { results, loading } = useDataFetching('/api/posts/?sort=-date');
   return (
     <section className='blog-container'>
       <h1 className='section-header'>Blog</h1>
@@ -96,7 +96,7 @@ const BlogCards = props => {
     </div>
   );
 };
-const CustomTag = ({ tag: Tag, children, childTag: ChildTag }) =>
+const CustomTag = ({ tag: Tag, children }) =>
   Tag !== 'unstyled' ? <Tag>{children}</Tag> : <>{children}</>;
 
 const BlogSocialBar = props => (
@@ -121,7 +121,7 @@ const BlogPostFooter = props => (
   </footer>
 );
 const RecentPosts = props => {
-  const { results, loading, error } = useDataFetching(
+  const { results, loading } = useDataFetching(
     `/api/posts/?limit=3&sort=-date&exclude=${props.current}`
   );
   console.log(props.current);

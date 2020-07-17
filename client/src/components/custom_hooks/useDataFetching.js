@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
 function useDataFetching(dataSource, delay) {
@@ -31,7 +31,7 @@ function useDataFetching(dataSource, delay) {
         setLoading(false);
       }
     },
-    [dataSource]
+    [dataSource, config]
   );
 
   useEffect(() => {
@@ -39,7 +39,6 @@ function useDataFetching(dataSource, delay) {
       if (delay) return;
       try {
         const response = await axios.get(dataSource, config);
-        console.log(response.data);
         if (response.data.status !== 'success') throw response.data.message;
         setResults([...response.data.data]);
         setLoading(false);
@@ -58,14 +57,3 @@ function useDataFetching(dataSource, delay) {
   };
 }
 export default useDataFetching;
-
-// async function fetchData() {
-//   try {
-//     const response = await axios.get(dataSource);
-//     setResults(response.data);
-//     setLoading(false);
-//   } catch (error) {
-//     setLoading(false);
-//     throw new Error(error);
-//   }
-// }

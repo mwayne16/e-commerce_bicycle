@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const crypto = require('crypto');
-const validator = val => {
-  console.log(val, mongoose.model['Users']);
-  return val.length >= UserSchema.password;
-};
 const UserSchema = mongoose.Schema(
   {
     name: {

@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Posts');
-const { v4: uuidv4 } = require('uuid');
-const jwt = require('jsonwebtoken');
-
 //Get all Posts
 //.exec() is async which could be used in place of try/catch. Will need to test
 router.get('/', async (req, res) => {

@@ -4,12 +4,9 @@ import useDataFetching from '../custom_hooks/useDataFetching';
 const UserContext = React.createContext();
 
 const UserProvider = props => {
-  // setUser could just set the token directly with passed data
-  // useEffect could check if a token exsists and update the user according to that token
-  // If the user has a token stored in local storage, validate it from backend
   const authToken = JSON.parse(localStorage.getItem('user-token'));
   const [token, setToken] = useLocalStorage('user-token', []);
-  const { makeRequest, loading, error, results } = useDataFetching(
+  const { makeRequest, loading, error } = useDataFetching(
     '/api/users/validate_stored_token',
     true
   );
@@ -43,5 +40,3 @@ const UserProvider = props => {
 };
 
 export { UserContext, UserProvider };
-// const [user, updateUser] = useState(false);
-// const setUser = data => updateUser(data);

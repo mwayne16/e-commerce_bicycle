@@ -3,8 +3,7 @@ import { CartItemsContext } from '../context/cartContext';
 import { CartModalContext } from '../context/modalContext';
 
 import '../../layout/styles/CartModal.css';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
-import ProductItemPage from '../ProductItemPage';
+import { Link } from 'react-router-dom';
 function CartButton(props) {
   const [toggled, setToggle] = React.useContext(CartModalContext);
   return (
